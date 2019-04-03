@@ -1,45 +1,13 @@
 
 
-
+use master;
+IF EXISTS (SELECT * FROM sys.databases WHERE name = N'BUSTICKET') BEGIN DROP DATABASE [BUSTICKET] END;
+GO
 IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = N'BUSTICKET') BEGIN CREATE DATABASE [BUSTICKET] END;
 GO
 USE BUSTICKET
 GO
 
-if exists ( select * from sys.objects where name='users' )
-BEGIN
-drop table users;
-END
-GO
-
-if exists ( select * from sys.objects where name='buses' )
-drop table buses;
-GO
-
-if exists ( select * from sys.objects where name='creditcard_type' )
-drop table creditcard_type;
-GO
-
-if exists ( select * from sys.objects where name='schedules' )
-BEGIN
-Alter table schedules drop constraint IF EXISTS FK_SCEDULES_BUS ;
-drop table schedules;
-END
-GO
-
-if exists ( select * from sys.objects where name='transactions' )
-BEGIN
-Alter table transactions 
-drop constraint IF EXISTS FK_TRANSACTION_CREDIT ;
-
-Alter table transactions 
-drop constraint IF EXISTS FK_TRANSACTION_USERS ;
-
-Alter table transactions 
-drop constraint IF EXISTS FK_TRANSACTION_SCEDHULE ;
-drop table transactions;
-END
-GO
 
 CREATE TABLE users ( 
 					[user_id] INT primary key identity(1,1) NOT NULL,
