@@ -1,0 +1,386 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BUSTICKETModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="buses">
+          <Key>
+            <PropertyRef Name="bus_id" />
+          </Key>
+          <Property Name="bus_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="bus_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="bus_type" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="total_seats" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="creditcard_type">
+          <Key>
+            <PropertyRef Name="c_id" />
+          </Key>
+          <Property Name="c_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="starts_with" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="length" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="schedules">
+          <Key>
+            <PropertyRef Name="s_id" />
+          </Key>
+          <Property Name="s_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="source" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="destination" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="date" Type="datetime" Nullable="false" />
+          <Property Name="cost" Type="int" Nullable="false" />
+          <Property Name="bus_id" Type="int" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="transactions">
+          <Key>
+            <PropertyRef Name="t_id" />
+          </Key>
+          <Property Name="t_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nameOnCard" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="cardNumber" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="unit_price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="quantity" Type="int" Nullable="false" />
+          <Property Name="total_price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="exp_Date" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="createdOn" Type="datetime" Nullable="false" />
+          <Property Name="createdBy" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="c_id" Type="int" Nullable="false" />
+          <Property Name="s_id" Type="int" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="contact" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="apt_number" Type="varchar" MaxLength="10" />
+          <Property Name="street_number" Type="varchar" MaxLength="10" />
+          <Property Name="city" Type="varchar" MaxLength="10" />
+          <Property Name="state" Type="varchar" MaxLength="10" />
+          <Property Name="country" Type="varchar" MaxLength="10" />
+          <Property Name="postal_Code" Type="varchar" MaxLength="10" />
+          <Property Name="password" Type="varchar" MaxLength="25" />
+        </EntityType>
+        <Association Name="FK_SCEDULES_BUS">
+          <End Role="buses" Type="Self.buses" Multiplicity="1" />
+          <End Role="schedules" Type="Self.schedules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="buses">
+              <PropertyRef Name="bus_id" />
+            </Principal>
+            <Dependent Role="schedules">
+              <PropertyRef Name="bus_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRANSACTION_CREDIT">
+          <End Role="creditcard_type" Type="Self.creditcard_type" Multiplicity="1" />
+          <End Role="transactions" Type="Self.transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="creditcard_type">
+              <PropertyRef Name="c_id" />
+            </Principal>
+            <Dependent Role="transactions">
+              <PropertyRef Name="c_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRANSACTION_SCHEDULE">
+          <End Role="schedules" Type="Self.schedules" Multiplicity="1" />
+          <End Role="transactions" Type="Self.transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="schedules">
+              <PropertyRef Name="s_id" />
+            </Principal>
+            <Dependent Role="transactions">
+              <PropertyRef Name="s_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRANSACTION_USERS">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="transactions" Type="Self.transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="transactions">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BUSTICKETModelStoreContainer">
+          <EntitySet Name="buses" EntityType="Self.buses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="creditcard_type" EntityType="Self.creditcard_type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="schedules" EntityType="Self.schedules" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="transactions" EntityType="Self.transactions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_SCEDULES_BUS" Association="Self.FK_SCEDULES_BUS">
+            <End Role="buses" EntitySet="buses" />
+            <End Role="schedules" EntitySet="schedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRANSACTION_CREDIT" Association="Self.FK_TRANSACTION_CREDIT">
+            <End Role="creditcard_type" EntitySet="creditcard_type" />
+            <End Role="transactions" EntitySet="transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRANSACTION_SCHEDULE" Association="Self.FK_TRANSACTION_SCHEDULE">
+            <End Role="schedules" EntitySet="schedules" />
+            <End Role="transactions" EntitySet="transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRANSACTION_USERS" Association="Self.FK_TRANSACTION_USERS">
+            <End Role="users" EntitySet="users" />
+            <End Role="transactions" EntitySet="transactions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BUSTICKETModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="bus">
+          <Key>
+            <PropertyRef Name="bus_id" />
+          </Key>
+          <Property Name="bus_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="bus_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="bus_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="total_seats" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="schedules" Relationship="Self.FK_SCEDULES_BUS" FromRole="buses" ToRole="schedules" />
+        </EntityType>
+        <EntityType Name="creditcard_type">
+          <Key>
+            <PropertyRef Name="c_id" />
+          </Key>
+          <Property Name="c_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="starts_with" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="length" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="transactions" Relationship="Self.FK_TRANSACTION_CREDIT" FromRole="creditcard_type" ToRole="transactions" />
+        </EntityType>
+        <EntityType Name="schedule">
+          <Key>
+            <PropertyRef Name="s_id" />
+          </Key>
+          <Property Name="s_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="source" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="destination" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="cost" Type="Int32" Nullable="false" />
+          <Property Name="bus_id" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="bus" Relationship="Self.FK_SCEDULES_BUS" FromRole="schedules" ToRole="buses" />
+          <NavigationProperty Name="transactions" Relationship="Self.FK_TRANSACTION_SCHEDULE" FromRole="schedules" ToRole="transactions" />
+        </EntityType>
+        <EntityType Name="transaction">
+          <Key>
+            <PropertyRef Name="t_id" />
+          </Key>
+          <Property Name="t_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nameOnCard" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cardNumber" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="unit_price" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <Property Name="total_price" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="exp_Date" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="createdOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="createdBy" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="c_id" Type="Int32" Nullable="false" />
+          <Property Name="s_id" Type="Int32" Nullable="false" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="creditcard_type" Relationship="Self.FK_TRANSACTION_CREDIT" FromRole="transactions" ToRole="creditcard_type" />
+          <NavigationProperty Name="schedule" Relationship="Self.FK_TRANSACTION_SCHEDULE" FromRole="transactions" ToRole="schedules" />
+          <NavigationProperty Name="user" Relationship="Self.FK_TRANSACTION_USERS" FromRole="transactions" ToRole="users" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contact" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apt_number" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="street_number" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="city" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="state" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="country" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="postal_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="transactions" Relationship="Self.FK_TRANSACTION_USERS" FromRole="users" ToRole="transactions" />
+        </EntityType>
+        <Association Name="FK_SCEDULES_BUS">
+          <End Role="buses" Type="Self.bus" Multiplicity="1" />
+          <End Role="schedules" Type="Self.schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="buses">
+              <PropertyRef Name="bus_id" />
+            </Principal>
+            <Dependent Role="schedules">
+              <PropertyRef Name="bus_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRANSACTION_CREDIT">
+          <End Role="creditcard_type" Type="Self.creditcard_type" Multiplicity="1" />
+          <End Role="transactions" Type="Self.transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="creditcard_type">
+              <PropertyRef Name="c_id" />
+            </Principal>
+            <Dependent Role="transactions">
+              <PropertyRef Name="c_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRANSACTION_SCHEDULE">
+          <End Role="schedules" Type="Self.schedule" Multiplicity="1" />
+          <End Role="transactions" Type="Self.transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="schedules">
+              <PropertyRef Name="s_id" />
+            </Principal>
+            <Dependent Role="transactions">
+              <PropertyRef Name="s_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRANSACTION_USERS">
+          <End Role="users" Type="Self.user" Multiplicity="1" />
+          <End Role="transactions" Type="Self.transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="transactions">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BUSTICKETEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="buses" EntityType="Self.bus" />
+          <EntitySet Name="creditcard_type" EntityType="Self.creditcard_type" />
+          <EntitySet Name="schedules" EntityType="Self.schedule" />
+          <EntitySet Name="transactions" EntityType="Self.transaction" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <AssociationSet Name="FK_SCEDULES_BUS" Association="Self.FK_SCEDULES_BUS">
+            <End Role="buses" EntitySet="buses" />
+            <End Role="schedules" EntitySet="schedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRANSACTION_CREDIT" Association="Self.FK_TRANSACTION_CREDIT">
+            <End Role="creditcard_type" EntitySet="creditcard_type" />
+            <End Role="transactions" EntitySet="transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRANSACTION_SCHEDULE" Association="Self.FK_TRANSACTION_SCHEDULE">
+            <End Role="schedules" EntitySet="schedules" />
+            <End Role="transactions" EntitySet="transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRANSACTION_USERS" Association="Self.FK_TRANSACTION_USERS">
+            <End Role="users" EntitySet="users" />
+            <End Role="transactions" EntitySet="transactions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BUSTICKETModelStoreContainer" CdmEntityContainer="BUSTICKETEntities">
+          <EntitySetMapping Name="buses">
+            <EntityTypeMapping TypeName="BUSTICKETModel.bus">
+              <MappingFragment StoreEntitySet="buses">
+                <ScalarProperty Name="bus_id" ColumnName="bus_id" />
+                <ScalarProperty Name="bus_name" ColumnName="bus_name" />
+                <ScalarProperty Name="bus_type" ColumnName="bus_type" />
+                <ScalarProperty Name="total_seats" ColumnName="total_seats" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="creditcard_type">
+            <EntityTypeMapping TypeName="BUSTICKETModel.creditcard_type">
+              <MappingFragment StoreEntitySet="creditcard_type">
+                <ScalarProperty Name="c_id" ColumnName="c_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="starts_with" ColumnName="starts_with" />
+                <ScalarProperty Name="length" ColumnName="length" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="schedules">
+            <EntityTypeMapping TypeName="BUSTICKETModel.schedule">
+              <MappingFragment StoreEntitySet="schedules">
+                <ScalarProperty Name="s_id" ColumnName="s_id" />
+                <ScalarProperty Name="source" ColumnName="source" />
+                <ScalarProperty Name="destination" ColumnName="destination" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="cost" ColumnName="cost" />
+                <ScalarProperty Name="bus_id" ColumnName="bus_id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="transactions">
+            <EntityTypeMapping TypeName="BUSTICKETModel.transaction">
+              <MappingFragment StoreEntitySet="transactions">
+                <ScalarProperty Name="t_id" ColumnName="t_id" />
+                <ScalarProperty Name="nameOnCard" ColumnName="nameOnCard" />
+                <ScalarProperty Name="cardNumber" ColumnName="cardNumber" />
+                <ScalarProperty Name="unit_price" ColumnName="unit_price" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="total_price" ColumnName="total_price" />
+                <ScalarProperty Name="exp_Date" ColumnName="exp_Date" />
+                <ScalarProperty Name="createdOn" ColumnName="createdOn" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="c_id" ColumnName="c_id" />
+                <ScalarProperty Name="s_id" ColumnName="s_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="BUSTICKETModel.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="contact" ColumnName="contact" />
+                <ScalarProperty Name="apt_number" ColumnName="apt_number" />
+                <ScalarProperty Name="street_number" ColumnName="street_number" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="postal_Code" ColumnName="postal_Code" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
