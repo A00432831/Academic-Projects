@@ -6,20 +6,10 @@ GO
 USE BUSTICKET
 GO
 
-Alter table schedules 
-drop constraint IF EXISTS FK_SCEDULES_BUS ;
-
-Alter table transactions 
-drop constraint IF EXISTS FK_TRANSACTION_CREDIT ;
-
-Alter table transactions 
-drop constraint IF EXISTS FK_TRANSACTION_USERS ;
-
-Alter table transactions 
-drop constraint IF EXISTS FK_TRANSACTION_SCEDHULE ;
-
 if exists ( select * from sys.objects where name='users' )
+BEGIN
 drop table users;
+END
 GO
 
 if exists ( select * from sys.objects where name='buses' )
@@ -31,11 +21,24 @@ drop table creditcard_type;
 GO
 
 if exists ( select * from sys.objects where name='schedules' )
+BEGIN
+Alter table schedules drop constraint IF EXISTS FK_SCEDULES_BUS ;
 drop table schedules;
+END
 GO
 
 if exists ( select * from sys.objects where name='transactions' )
+BEGIN
+Alter table transactions 
+drop constraint IF EXISTS FK_TRANSACTION_CREDIT ;
+
+Alter table transactions 
+drop constraint IF EXISTS FK_TRANSACTION_USERS ;
+
+Alter table transactions 
+drop constraint IF EXISTS FK_TRANSACTION_SCEDHULE ;
 drop table transactions;
+END
 GO
 
 CREATE TABLE users ( 
@@ -48,7 +51,8 @@ CREATE TABLE users (
 					   city VARCHAR(10),
 					   state VARCHAR(10),
 					   country VARCHAR(10),
-					   postal_Code VARCHAR(10)
+					   postal_Code VARCHAR(10),
+					   password varchar(25)
 					    );
 GO
 
