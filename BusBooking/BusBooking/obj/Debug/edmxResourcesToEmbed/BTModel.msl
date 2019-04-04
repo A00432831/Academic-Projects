@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BUSTICKETModelStoreContainer" CdmEntityContainer="BUSTICKETEntities">
+    <EntitySetMapping Name="buses">
+      <EntityTypeMapping TypeName="BUSTICKETModel.bus">
+        <MappingFragment StoreEntitySet="buses">
+          <ScalarProperty Name="bus_id" ColumnName="bus_id" />
+          <ScalarProperty Name="bus_name" ColumnName="bus_name" />
+          <ScalarProperty Name="bus_type" ColumnName="bus_type" />
+          <ScalarProperty Name="total_seats" ColumnName="total_seats" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="creditcard_type">
+      <EntityTypeMapping TypeName="BUSTICKETModel.creditcard_type">
+        <MappingFragment StoreEntitySet="creditcard_type">
+          <ScalarProperty Name="c_id" ColumnName="c_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="starts_with" ColumnName="starts_with" />
+          <ScalarProperty Name="length" ColumnName="length" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="schedules">
+      <EntityTypeMapping TypeName="BUSTICKETModel.schedule">
+        <MappingFragment StoreEntitySet="schedules">
+          <ScalarProperty Name="s_id" ColumnName="s_id" />
+          <ScalarProperty Name="source" ColumnName="source" />
+          <ScalarProperty Name="destination" ColumnName="destination" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="cost" ColumnName="cost" />
+          <ScalarProperty Name="bus_id" ColumnName="bus_id" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="transactions">
+      <EntityTypeMapping TypeName="BUSTICKETModel.transaction">
+        <MappingFragment StoreEntitySet="transactions">
+          <ScalarProperty Name="t_id" ColumnName="t_id" />
+          <ScalarProperty Name="nameOnCard" ColumnName="nameOnCard" />
+          <ScalarProperty Name="cardNumber" ColumnName="cardNumber" />
+          <ScalarProperty Name="unit_price" ColumnName="unit_price" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="total_price" ColumnName="total_price" />
+          <ScalarProperty Name="exp_Date" ColumnName="exp_Date" />
+          <ScalarProperty Name="createdOn" ColumnName="createdOn" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="c_id" ColumnName="c_id" />
+          <ScalarProperty Name="s_id" ColumnName="s_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="BUSTICKETModel.user">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="contact" ColumnName="contact" />
+          <ScalarProperty Name="apt_number" ColumnName="apt_number" />
+          <ScalarProperty Name="street_number" ColumnName="street_number" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="country" ColumnName="country" />
+          <ScalarProperty Name="postal_Code" ColumnName="postal_Code" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

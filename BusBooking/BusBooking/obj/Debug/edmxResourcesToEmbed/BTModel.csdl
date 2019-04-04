@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BUSTICKETModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="bus">
+    <Key>
+      <PropertyRef Name="bus_id" />
+    </Key>
+    <Property Name="bus_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="bus_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="bus_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="total_seats" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="schedules" Relationship="Self.FK_SCEDULES_BUS" FromRole="buses" ToRole="schedules" />
+  </EntityType>
+  <EntityType Name="creditcard_type">
+    <Key>
+      <PropertyRef Name="c_id" />
+    </Key>
+    <Property Name="c_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="starts_with" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="length" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <NavigationProperty Name="transactions" Relationship="Self.FK_TRANSACTION_CREDIT" FromRole="creditcard_type" ToRole="transactions" />
+  </EntityType>
+  <EntityType Name="schedule">
+    <Key>
+      <PropertyRef Name="s_id" />
+    </Key>
+    <Property Name="s_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="source" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="destination" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="cost" Type="Int32" Nullable="false" />
+    <Property Name="bus_id" Type="Int32" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="bus" Relationship="Self.FK_SCEDULES_BUS" FromRole="schedules" ToRole="buses" />
+    <NavigationProperty Name="transactions" Relationship="Self.FK_TRANSACTION_SCHEDULE" FromRole="schedules" ToRole="transactions" />
+  </EntityType>
+  <EntityType Name="transaction">
+    <Key>
+      <PropertyRef Name="t_id" />
+    </Key>
+    <Property Name="t_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nameOnCard" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cardNumber" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="unit_price" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="quantity" Type="Int32" Nullable="false" />
+    <Property Name="total_price" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="exp_Date" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="createdOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="createdBy" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="c_id" Type="Int32" Nullable="false" />
+    <Property Name="s_id" Type="Int32" Nullable="false" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="creditcard_type" Relationship="Self.FK_TRANSACTION_CREDIT" FromRole="transactions" ToRole="creditcard_type" />
+    <NavigationProperty Name="schedule" Relationship="Self.FK_TRANSACTION_SCHEDULE" FromRole="transactions" ToRole="schedules" />
+    <NavigationProperty Name="user" Relationship="Self.FK_TRANSACTION_USERS" FromRole="transactions" ToRole="users" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="contact" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="apt_number" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="street_number" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="city" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="state" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="country" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="postal_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="transactions" Relationship="Self.FK_TRANSACTION_USERS" FromRole="users" ToRole="transactions" />
+  </EntityType>
+  <Association Name="FK_SCEDULES_BUS">
+    <End Role="buses" Type="Self.bus" Multiplicity="1" />
+    <End Role="schedules" Type="Self.schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="buses">
+        <PropertyRef Name="bus_id" />
+      </Principal>
+      <Dependent Role="schedules">
+        <PropertyRef Name="bus_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TRANSACTION_CREDIT">
+    <End Role="creditcard_type" Type="Self.creditcard_type" Multiplicity="1" />
+    <End Role="transactions" Type="Self.transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="creditcard_type">
+        <PropertyRef Name="c_id" />
+      </Principal>
+      <Dependent Role="transactions">
+        <PropertyRef Name="c_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TRANSACTION_SCHEDULE">
+    <End Role="schedules" Type="Self.schedule" Multiplicity="1" />
+    <End Role="transactions" Type="Self.transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="schedules">
+        <PropertyRef Name="s_id" />
+      </Principal>
+      <Dependent Role="transactions">
+        <PropertyRef Name="s_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TRANSACTION_USERS">
+    <End Role="users" Type="Self.user" Multiplicity="1" />
+    <End Role="transactions" Type="Self.transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="transactions">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BUSTICKETEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="buses" EntityType="Self.bus" />
+    <EntitySet Name="creditcard_type" EntityType="Self.creditcard_type" />
+    <EntitySet Name="schedules" EntityType="Self.schedule" />
+    <EntitySet Name="transactions" EntityType="Self.transaction" />
+    <EntitySet Name="users" EntityType="Self.user" />
+    <AssociationSet Name="FK_SCEDULES_BUS" Association="Self.FK_SCEDULES_BUS">
+      <End Role="buses" EntitySet="buses" />
+      <End Role="schedules" EntitySet="schedules" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TRANSACTION_CREDIT" Association="Self.FK_TRANSACTION_CREDIT">
+      <End Role="creditcard_type" EntitySet="creditcard_type" />
+      <End Role="transactions" EntitySet="transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TRANSACTION_SCHEDULE" Association="Self.FK_TRANSACTION_SCHEDULE">
+      <End Role="schedules" EntitySet="schedules" />
+      <End Role="transactions" EntitySet="transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TRANSACTION_USERS" Association="Self.FK_TRANSACTION_USERS">
+      <End Role="users" EntitySet="users" />
+      <End Role="transactions" EntitySet="transactions" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

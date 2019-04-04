@@ -84,3 +84,7 @@ C:\Projectfiles\BusBooking\BusBooking\BusBooking\obj\Debug\BusBooking.csproj.Cor
 C:\Projectfiles\BusBooking\BusBooking\BusBooking\obj\Debug\BusBooking.csproj.CopyComplete
 C:\Projectfiles\BusBooking\BusBooking\BusBooking\obj\Debug\BusBooking.dll
 C:\Projectfiles\BusBooking\BusBooking\BusBooking\obj\Debug\BusBooking.pdb
+C:\Projectfiles\BusBooking\BusBooking\BusBooking\bin\EntityFramework.dll
+C:\Projectfiles\BusBooking\BusBooking\BusBooking\bin\EntityFramework.SqlServer.dll
+C:\Projectfiles\BusBooking\BusBooking\BusBooking\bin\EntityFramework.xml
+C:\Projectfiles\BusBooking\BusBooking\BusBooking\bin\EntityFramework.SqlServer.xml

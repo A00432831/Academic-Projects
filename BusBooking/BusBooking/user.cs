@@ -11,7 +11,8 @@ namespace BusBooking
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class user
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,10 +20,17 @@ namespace BusBooking
         {
             this.transactions = new HashSet<transaction>();
         }
-    
+
+ 
         public int user_id { get; set; }
+        [Required(ErrorMessage = "Please Enter Name ")]
+        [StringLength(50, ErrorMessage = "name should be Max length of 50")]
         public string name { get; set; }
+
+        [Required(ErrorMessage = "Please Enter Email Address")]
+        [RegularExpression(".+@.+\\..+", ErrorMessage = "Please Enter Correct Email Address")]
         public string email { get; set; }
+
         public string contact { get; set; }
         public string apt_number { get; set; }
         public string street_number { get; set; }
