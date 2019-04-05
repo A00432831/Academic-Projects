@@ -38,9 +38,12 @@ GO
 CREATE TABLE buses ( 
 					bus_id int primary key identity(1,1) NOT NULL,
 					  bus_name VARCHAR(50) NOT NULL,
-					   bus_type VARCHAR(50) NOT NULL,
+					   bus_type_id int NOT NULL,
 					   total_seats int NOT NULL
 					    );
+GO
+CREATE TABLE buses_type(bus_type_id int primary key identity(1,1) not null,
+name varchar(50) not null)
 GO
 CREATE TABLE transactions ( 
 					t_id int primary key identity(1,1) NOT NULL,
@@ -82,3 +85,6 @@ ALTER TABLE transactions
 ADD CONSTRAINT FK_TRANSACTION_CREDIT FOREIGN KEY(c_id)
 References creditcard_type(c_id)
 
+ALTER TABLE buses
+ADD CONSTRAINT FK_BUSES FOREiGN KEY(bus_type_id)
+References buses_type(bus_type_id)
