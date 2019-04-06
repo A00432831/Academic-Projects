@@ -24,20 +24,39 @@ namespace BusBooking
  
         public int user_id { get; set; }
         [Required(ErrorMessage = "Please Enter Name ")]
+        [Display(Name = "Name")]
         [StringLength(50, ErrorMessage = "name should be Max length of 50")]
         public string name { get; set; }
 
         [Required(ErrorMessage = "Please Enter Email Address")]
+        [Display(Name = "Email")]
         [RegularExpression(".+@.+\\..+", ErrorMessage = "Please Enter Correct Email Address")]
         public string email { get; set; }
-
+        
+        [Required(ErrorMessage ="Please enter Phone Number")]
+        [Display(Name = "Phone Number")]
+        [StringLength(10, ErrorMessage = "Phone Number should be maximum of 10", MinimumLength = 10)]
+        [RegularExpression(" ^\(? ([0 - 9]{3})\)?[-. ]? ([0 - 9]{3})[-. ]? ([0 - 9]{4})$", ErrorMessage = "Please Enter Correct Phone Number")]
         public string contact { get; set; }
+
+        [Display(Name = "Apt_Number")]
         public string apt_number { get; set; }
+        [Display(Name = "Street Number")]
         public string street_number { get; set; }
+        [Display(Name = "City")]
         public string city { get; set; }
+        [Display(Name = "Province/State")]
         public string state { get; set; }
+        [Display(Name = "Country")]
         public string country { get; set; }
+
+        [Required(ErrorMessage = "Please Enter Postal Code")]
+        [Display(Name = "Postal Code")]
+        [RegularExpression(" ^ ([a - zA - Z]\d[a - zA - Z]() ?\d[a - zA - Z]\d)$", ErrorMessage = "Please Enter Valid Postal Code")]
         public string postal_Code { get; set; }
+
+        [Display(Name = "Password")]
+      
         public string password { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
