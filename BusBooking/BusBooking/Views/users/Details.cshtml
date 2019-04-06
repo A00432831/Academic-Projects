@@ -87,7 +87,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.password)
+          @*@Html.DisplayFor(model => model.password,new { TextBoxMode = "Password"}*@
+            @Html.Raw("\u2022\u2022\u2022\u2022\u2022")
         </dd>
 
     </dl>

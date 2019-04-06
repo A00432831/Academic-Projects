@@ -21,7 +21,7 @@ namespace BusBooking
             this.transactions = new HashSet<transaction>();
         }
 
- 
+
         public int user_id { get; set; }
         [Required(ErrorMessage = "Please Enter Name ")]
         [Display(Name = "Name")]
@@ -32,11 +32,12 @@ namespace BusBooking
         [Display(Name = "Email")]
         [RegularExpression(".+@.+\\..+", ErrorMessage = "Please Enter Correct Email Address")]
         public string email { get; set; }
-        
-        [Required(ErrorMessage ="Please enter Phone Number")]
+
+        [Required(ErrorMessage = "Please enter Phone Number")]
         [Display(Name = "Phone Number")]
-        [StringLength(10, ErrorMessage = "Phone Number should be maximum of 10", MinimumLength = 10)]
-        [RegularExpression(" ^\(? ([0 - 9]{3})\)?[-. ]? ([0 - 9]{3})[-. ]? ([0 - 9]{4})$", ErrorMessage = "Please Enter Correct Phone Number")]
+        [StringLength(11, ErrorMessage = "Phone Number should be maximum of 10", MinimumLength = 10)]
+        [RegularExpression("^\\(?([0-9]{3})\\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Please Enter Correct Phone Number")]
+
         public string contact { get; set; }
 
         [Display(Name = "Apt_Number")]
@@ -52,14 +53,18 @@ namespace BusBooking
 
         [Required(ErrorMessage = "Please Enter Postal Code")]
         [Display(Name = "Postal Code")]
-        [RegularExpression(" ^ ([a - zA - Z]\d[a - zA - Z]() ?\d[a - zA - Z]\d)$", ErrorMessage = "Please Enter Valid Postal Code")]
+
+        [RegularExpression("[ABCEGHJKLMNPRSTVXY][0-9][ABCEGHJKLMNPRSTVWXYZ][0-9][ABCEGHJKLMNPRSTVWXYZ][0-9]", ErrorMessage = "Please Enter Valid Postal Code")]
         public string postal_Code { get; set; }
 
         [Display(Name = "Password")]
-      
+        [DataType(DataType.Password)]        
+
         public string password { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<transaction> transactions { get; set; }
+
+
     }
 }

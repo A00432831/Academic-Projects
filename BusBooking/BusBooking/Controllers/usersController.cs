@@ -17,7 +17,8 @@ namespace BusBooking.Controllers
 
         // GET: users
         public async Task<ActionResult> Index()
-        {
+        { 
+
             return View(await db.users.ToListAsync());
         }
 
@@ -49,13 +50,17 @@ namespace BusBooking.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "user_id,name,email,contact,apt_number,street_number,city,state,country,postal_Code,password")] user user)
         {
-            if (ModelState.IsValid)
+            List<user> us = new List<user>();
+            us = db.users.ToList();
+            var users = us.Where(x => x.email == user.email).Select(x => x.email).FirstOrDefault();
+            if (ModelState.IsValid && users== null )
             {
                 db.users.Add(user);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-
+            ModelState.AddModelError("", "User Already exists");
+            
             return View(user);
         }
 
