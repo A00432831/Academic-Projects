@@ -14,13 +14,14 @@ CREATE TABLE users (
 					 [name] VARCHAR(50) NOT NULL,
 					  email VARCHAR(50) NOT NULL,
 					   contact VARCHAR(11) NOT NULL ,
-					   apt_number VARCHAR(10),
-					   street_number VARCHAR(10),
-					   city VARCHAR(10),
-					   state VARCHAR(10),
-					   country VARCHAR(10),
-					   postal_Code VARCHAR(10),
-					   password varchar(25)
+					   apt_number VARCHAR(10) NOT NULL,
+					   street_number VARCHAR(10) NOT NULL,
+					   city VARCHAR(10) NOT NULL,
+					   state VARCHAR(10) NOT NULL,
+					   country VARCHAR(10) NOT NULL,
+					   postal_Code VARCHAR(10) NOT NULL,
+					   role varchar(10) NOT NULL,
+					   password varchar(25) NOT NULL
 					    );
 GO
 
