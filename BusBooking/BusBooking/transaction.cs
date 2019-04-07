@@ -30,6 +30,7 @@ namespace BusBooking
         public decimal total_price { get; set; }
 
         [Required(ErrorMessage = "Please enter the expiry date")]
+        [RegularExpression(@"0[1-9]|10|11|12)/202[0 - 9]{1}$", ErrorMessage = "Invalid Expiry date")]
         public string exp_Date { get; set; }
 
         public System.DateTime createdOn { get; set; } = DateTime.Now;
