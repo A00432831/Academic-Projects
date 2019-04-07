@@ -1,8 +1,18 @@
 ﻿body {
     padding-top: 5px;
     padding-bottom: 20px;
+
+    background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url("../../Scripts/Images/milkyway.jpg");
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-size: cover;
+    color: #fff!important;
+    
 }
 
+table {
+    color:white!important;
+}
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -21,4 +31,119 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+
+.book-bus-form-box {
+    max-width: 350px;
+    border: 1px solid #ced4da;
+    margin: 0% auto 107px;
+}
+
+.radio-btn {
+    margin: 0 85px;
+}
+
+    .radio-btn .btn {
+        margin: 20px 10px 20px 0;
+        box-shadow: none;
+    }
+
+        .radio-btn .btn:after {
+            content: '';
+            height: 15px;
+            width: 15px;
+            top: -2px;
+            left: -1px;
+            background-color: #fff;
+            position: relative;
+            display: inline-block;
+            border: 3px solid #fff;
+            visibility: visible;
+            border-radius: 50%;
+        }
+
+        .radio-btn .btn:checked:after {
+            content: '';
+            background-color: #000;
+            transition: 0.5s;
+        }
+
+    .radio-btn span {
+        margin-right: 5px;
+        font-size: 12px;
+    }
+
+.book-bus-form {
+    padding: 0 20px 20px;
+}
+
+    .book-bus-form label {
+        margin-bottom: 5px;
+        margin-top: 10px;
+        font-size: 12px;
+    }
+
+input::placeholder {
+    color: #fff !important;
+}
+
+.input-div {
+    width: 151px;
+    display: inline-block;
+}
+
+.form-control {
+    font-size: 12px !important;
+    border-radius: 2 !important;
+    color: #fff !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+.select-date::-webkit-inner-spin-button,
+.select-date::-webkit-outer-spin-button {
+    -webkit-appearance: none !important;
+    margin: 0 !important;
+}
+
+.select-date::-webkit-calendar-picker-indicator {
+    background: transparent !important;
+}
+
+.bus-select {
+    color: #fff !important;
+    font-size: 12px !important;
+    border: 1px solid #ced4da !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+}
+
+    .bus-select option {
+        color: #000 !important;
+        font-size: 12px !important;
+        border: 1px solid #ced4da !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        background: transparent !important;
+    }
+
+.bus {
+    border-radius: 10% !important;
+    background: linear-gradient(rgba(42,157,216,0.5),rgba(187,18,55,0.5)) !important;
+    font-size: 12px !important;
+    font-weight: bold;
+    width: 100%;
+    padding: 10px 0;
+    box-shadow: none !important;
+}
+
+.carousel {
+    width: 900px;
+    height: 500px;
+    background: none repeat scroll 0 0 rgba(187,18,55,0.5);
+    margin-left: 100px;
+    margin-top: 20px;
+    padding: 1%;
 }
