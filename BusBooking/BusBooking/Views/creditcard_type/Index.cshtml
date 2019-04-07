@@ -1,0 +1,46 @@
+﻿@model IEnumerable<BusBooking.creditcard_type>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.starts_with)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.length)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.starts_with)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.length)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.c_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.c_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.c_id })
+        </td>
+    </tr>
+}
+
+</table>

@@ -3,7 +3,7 @@
 ################################################################################
 
 /BusBooking/.vs/BusBooking/v15/Server/sqlite3
-/BusBooking/BusBooking.Tests/obj/Debug
-/BusBooking/BusBooking
-/BusBooking/.vs
 /.vs
+/BusBooking/BusBooking/obj
+/BusBooking/BusBooking.Tests/obj/Debug
+/BusBooking/.vs

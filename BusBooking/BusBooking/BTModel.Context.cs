@@ -26,6 +26,7 @@ namespace BusBooking
         }
     
         public virtual DbSet<bus> buses { get; set; }
+        public virtual DbSet<buses_type> buses_type { get; set; }
         public virtual DbSet<creditcard_type> creditcard_type { get; set; }
         public virtual DbSet<schedule> schedules { get; set; }
         public virtual DbSet<transaction> transactions { get; set; }

@@ -22,9 +22,10 @@ namespace BusBooking
     
         public int bus_id { get; set; }
         public string bus_name { get; set; }
-        public string bus_type { get; set; }
+        public int bus_type_id { get; set; }
         public int total_seats { get; set; }
     
+        public virtual buses_type buses_type { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<schedule> schedules { get; set; }
     }
