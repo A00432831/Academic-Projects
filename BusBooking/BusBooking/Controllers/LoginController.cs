@@ -30,6 +30,8 @@ namespace BusBooking.Controllers
                 else
                 {
                     Session["user_id"] = userDetails.user_id;
+                    if (userDetails.role.Equals("Admin", StringComparison.OrdinalIgnoreCase))
+                        return RedirectToAction("Index", "Schedules");
                     return RedirectToAction("SearchBuses", "Schedules");                
                 }
             }
