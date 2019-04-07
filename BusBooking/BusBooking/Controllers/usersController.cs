@@ -36,6 +36,8 @@ namespace BusBooking.Controllers
             return View(user);
         }
 
+        
+
         // GET: users/Create
         public ActionResult Create()
         {
@@ -47,18 +49,21 @@ namespace BusBooking.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "user_id,name,email,contact,apt_number,street_number,city,state,country,postal_Code,role,password")] user user)
+        public async Task<ActionResult> Create([Bind(Include = "user_id,name,email,contact,apt_number,street_number,city,state,country,postal_Code,password,role,confirmPassword")] user user)
         {
-            if (ModelState.IsValid)
+            List<user> us = new List<user>();
+            us = db.users.ToList();
+            var users = us.Where(x => x.email == user.email).Select(x => x.email).FirstOrDefault();
+            if (ModelState.IsValid && users == null)
             {
                 db.users.Add(user);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+            ModelState.AddModelError("", "User Already exists");
 
             return View(user);
         }
-
         // GET: users/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
