@@ -77,6 +77,7 @@ namespace BusBooking
         [NotMapped]
         [Required(ErrorMessage = "Please Enter Confirm Password")]
         [Display(Name = "Confirm Password")]
+        [DataType(DataType.Password)]
         [Compare(nameof(password), ErrorMessage = "Password and confirm Password do not match")]
         public string confirmPassword { get; set; }
 
