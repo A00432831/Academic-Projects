@@ -11,7 +11,8 @@ namespace BusBooking
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class bus
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,8 +22,14 @@ namespace BusBooking
         }
     
         public int bus_id { get; set; }
+
+        [Display(Name = "Bus Name")]
         public string bus_name { get; set; }
+
+        [Display(Name = "Bus Type")]
         public int bus_type_id { get; set; }
+
+        [Display(Name = "Total Seats")]
         public int total_seats { get; set; }
     
         public virtual buses_type buses_type { get; set; }

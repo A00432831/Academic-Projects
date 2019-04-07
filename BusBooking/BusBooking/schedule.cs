@@ -11,7 +11,8 @@ namespace BusBooking
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class schedule
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,9 +22,20 @@ namespace BusBooking
         }
     
         public int s_id { get; set; }
+
+        [Display(Name = "Source")]
+        [Required(ErrorMessage = "required")]
         public string source { get; set; }
+
+        [Display(Name = "Destination")]
+        [Required(ErrorMessage = "required")]
         public string destination { get; set; }
+
+        [Display(Name = "Date of Travel")]
         public System.DateTime date { get; set; }
+
+        [Display(Name = "Cost")]
+        [Required(ErrorMessage = "required")]
         public int cost { get; set; }
         public int bus_id { get; set; }
         public string description { get; set; }
