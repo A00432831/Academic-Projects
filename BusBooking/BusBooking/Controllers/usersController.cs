@@ -47,7 +47,7 @@ namespace BusBooking.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "user_id,name,email,contact,apt_number,street_number,city,state,country,postal_Code,password")] user user)
+        public async Task<ActionResult> Create([Bind(Include = "user_id,name,email,contact,apt_number,street_number,city,state,country,postal_Code,role,password")] user user)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace BusBooking.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "user_id,name,email,contact,apt_number,street_number,city,state,country,postal_Code,password")] user user)
+        public async Task<ActionResult> Edit([Bind(Include = "user_id,name,email,contact,apt_number,street_number,city,state,country,postal_Code,role,password")] user user)
         {
             if (ModelState.IsValid)
             {
