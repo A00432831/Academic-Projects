@@ -30,7 +30,7 @@ namespace BusBooking
 
         [Required(ErrorMessage = "Please Enter Email Address")]
         [Display(Name = "Email")]
-        [RegularExpression(".+@.+\\..+", ErrorMessage = "Please Enter Correct Email Address")]
+        [RegularExpression("^([\\w\\.\\-]+)@([\\w\\-]+)((\\.(\\w){2,3})+)$", ErrorMessage = "Please Enter Correct Email Address")]
         public string email { get; set; }
 
         [Required(ErrorMessage = "Please enter Phone Number")]
@@ -39,34 +39,44 @@ namespace BusBooking
         [RegularExpression("^\\(?([0-9]{3})\\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Please Enter Correct Phone Number")]
 
         public string contact { get; set; }
-
-        [Display(Name = "Apt_Number")]
+        [Required(ErrorMessage = "Please Enter Apartment Number")]
+        [Display(Name = "Apartment Number")]
         public string apt_number { get; set; }
+
+        [Required(ErrorMessage = "Please Enter Street Number")]
         [Display(Name = "Street Number")]
         public string street_number { get; set; }
+
+        [Required(ErrorMessage = "Please Enter City")]
         [Display(Name = "City")]
         public string city { get; set; }
+
+        [Required(ErrorMessage = "Please Enter Province/State")]
         [Display(Name = "Province/State")]
         public string state { get; set; }
+
+        [Required(ErrorMessage = "Please Enter Country")]
         [Display(Name = "Country")]
         public string country { get; set; }
 
         [Required(ErrorMessage = "Please Enter Postal Code")]
         [Display(Name = "Postal Code")]
-
         [RegularExpression("[ABCEGHJKLMNPRSTVXY][0-9][ABCEGHJKLMNPRSTVWXYZ][0-9][ABCEGHJKLMNPRSTVWXYZ][0-9]", ErrorMessage = "Please Enter Valid Postal Code")]
         public string postal_Code { get; set; }
 
+        [Required(ErrorMessage = "Please Enter Password")]
         [Display(Name = "Password")]
         [DataType(DataType.Password)]
-
         public string password { get; set; }
 
+        [Required(ErrorMessage = "Please Choose a Role")]
+        [Display(Name = "Role")]
         public string role { get; set; }
+
 
         [NotMapped]
         [Required(ErrorMessage = "Please Enter Confirm Password")]
-        [Display(Name = "Confirm_Password")]
+        [Display(Name = "Confirm Password")]
         [Compare(nameof(password), ErrorMessage = "Password and confirm Password do not match")]
         public string confirmPassword { get; set; }
 
