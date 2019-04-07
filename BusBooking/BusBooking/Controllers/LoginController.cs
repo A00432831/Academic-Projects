@@ -30,9 +30,16 @@ namespace BusBooking.Controllers
                 else
                 {
                     Session["user_id"] = userDetails.user_id;
+                    Session["email"] = userDetails.email;
                     return RedirectToAction("SearchBuses", "Schedules");                
                 }
             }
+        }
+
+        public ActionResult Logout()
+        {
+            Session.Abandon();
+            return RedirectToAction("Index", "Home");
         }
     }
 }

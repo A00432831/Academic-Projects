@@ -25,15 +25,29 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Pricing<span class="sr-only">(current)</span></a>
                     </li>
-                    
+
                 </ul>
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("LoginPage","login")">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Index","login")">Registration</a>
-                    </li>
+                    @if (Session["user_id"] == null)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("LoginPage","login")">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("create","users")">Registration</a>
+                        </li>
+                    } else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Details","users",Session["user_id"].ToString())">
+                                @Session["email"].ToString()
+                            </a>
+                        </li>
+                        <li class="nav-link" href="@Url.Action("logout","login")">
+                            Log Out
+                        </li>
+                    }
+
                 </ul>
             </div>
         </nav>
