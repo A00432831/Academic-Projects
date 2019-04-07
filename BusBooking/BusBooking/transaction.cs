@@ -11,22 +11,34 @@ namespace BusBooking
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class transaction
     {
         public int t_id { get; set; }
+
+        [Required(ErrorMessage = "Please enter the name on card")]
         public string nameOnCard { get; set; }
+
+        [Required(ErrorMessage = "Please enter the Card Number")]
+        [StringLength(16, MinimumLength = 15, ErrorMessage = "Invalid Card Number")]
+        [RegularExpression(@"^[0-9]*$", ErrorMessage = "Only Digits")]
         public string cardNumber { get; set; }
+
         public decimal unit_price { get; set; }
         public int quantity { get; set; }
         public decimal total_price { get; set; }
+
+        [Required(ErrorMessage = "Please enter the expiry date")]
         public string exp_Date { get; set; }
-        public System.DateTime createdOn { get; set; }
+
+        public System.DateTime createdOn { get; set; } = DateTime.Now;
+
         public string createdBy { get; set; }
         public int c_id { get; set; }
         public int s_id { get; set; }
         public int user_id { get; set; }
-    
+
         public virtual creditcard_type creditcard_type { get; set; }
         public virtual schedule schedule { get; set; }
         public virtual user user { get; set; }

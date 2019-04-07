@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BusBooking;
+using System.Text.RegularExpressions;
 
 namespace BusBooking.Controllers
 {
@@ -40,6 +41,7 @@ namespace BusBooking.Controllers
         // GET: transactions/Create
         public ActionResult Create()
         {
+
             ViewBag.c_id = new SelectList(db.creditcard_type, "c_id", "name");
             ViewBag.s_id = new SelectList(db.schedules, "s_id", "source");
             ViewBag.user_id = new SelectList(db.users, "user_id", "name");
@@ -53,6 +55,28 @@ namespace BusBooking.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "t_id,nameOnCard,cardNumber,unit_price,quantity,total_price,exp_Date,createdOn,createdBy,c_id,s_id,user_id")] transaction transaction)
         {
+            List<creditcard_type> cctype = new List<creditcard_type>();
+            cctype = db.creditcard_type.ToList();
+            var ccid = 0;
+            string cardStart = transaction.cardNumber.Substring(0, 2);
+            var startWith = cctype.Select(x => x.starts_with);
+            var cclength = cctype.Select(x => x.length).FirstOrDefault();
+
+            if (String.Equals(cardStart, startWith) && transaction.cardNumber.Length == cclength)
+            {
+                ccid = cctype.Where(x => x.starts_with == cardStart).Select(x => x.c_id).FirstOrDefault();
+            }
+            else
+            {
+                ViewBag.errormessage = "Invalid Card Number";
+                return RedirectToAction("Create");
+            }
+            transaction.c_id = ccid;
+            transaction.createdOn = DateTime.Now;
+            var userid = (string)Session["user_id"];
+
+            transaction.user_id = Convert.ToInt32(userid);
+
             if (ModelState.IsValid)
             {
                 db.transactions.Add(transaction);
