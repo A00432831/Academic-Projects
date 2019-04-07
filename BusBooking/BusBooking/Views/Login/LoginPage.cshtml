@@ -2,38 +2,36 @@
 @{
     ViewBag.Title = "LoginPage";
 }
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width"/>
-    <title>Login</title> <!-- seild-->
-    <style>
-        .center_div {
-            margin: 0 auto;
-            width: 30% /* value of your choice which suits your alignment */
-        }
-    </style>
-</head>
-<body>
-    <br />
-    <br />
-    <img src="~/Scripts/Images/Capture.PNG" class=" mx-auto" style="width: 50%;margin:26px 216px auto" alt="Responsive image" >
-    <form action="" method="post" class="center_div">
+<style>
+    .center_div {
+        margin: 0 auto;
+        width: 40% /* value of your choice which suits your alignment */
+    }
+</style>
+<br />
+<br />
+
+@using (Html.BeginForm("Authentication", "Login", FormMethod.Post))
+{
+    <img src="~/Scripts/Images/Capture.PNG" class="" style="width: 50%;margin:26px 216px auto !important; padding-left:0 0 0 168px!important" alt="Responsive image">
+    <div id="login-div" class="center_div">
         <div class="form-group" id="login-div">
-            @Html.LabelFor(model => model.email)
-            <label for="Email">Email address</label>
-            <input type="email" class="form-control" id="Email" placeholder="Enter email">
+            <label for="Email">Email address</label><br />
+            @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Email" } })
+            @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
         </div>
         <div class="form-group">
             <label for="Password">Password</label>
-            <input type="password" class="form-control" id="Password" placeholder="Enter Password">
+            @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control", @type = "password", @placeholder = "Enter Password" } })
+            @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
         </div>
-        <button type="submit" class="btn btn-primary">Sign In</button>
-        <button type="submit" class="btn btn-info">Reset</button>
-    </form>
-
-</body>
-</html>
+        <div class="form-group">
+            <label class="field-validation-error"> @Html.DisplayFor(model => model.loginErrorMessage)</label>
+        </div>
+        <button type="submit" class="btn btn-primary" style="margin-left:65px">Sign In</button>
+        <button type="reset" class="btn btn-info" style="position:center">Reset</button>
+    </div>
+}
 
 
 

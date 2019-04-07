@@ -8,8 +8,10 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BusBooking;
+using System.Web.WebPages.Html;
+using SelectListItem = System.Web.WebPages.Html.SelectListItem;
 
-namespace BusBooking.Views
+namespace BusBooking.Controllers
 {
     public class schedulesController : Controller
     {
@@ -19,7 +21,28 @@ namespace BusBooking.Views
         public async Task<ActionResult> Index()
         {
             var schedules = db.schedules.Include(s => s.bus);
+            return View();
+        }
+        // get : home page
+        public async Task<ActionResult> SearchBuses()
+        {
+            var a = db.schedules.Select(arg => new { source = arg.source }).ToList().Distinct();
+            var b = db.schedules.Select(arg => new { destination = arg.destination }).ToList().Distinct();
+            var c = db.schedules.Select(arg => new { date = arg.date }).ToList().Distinct();
+            ViewData["source"] = new SelectList(a, "source", "source");
+            ViewData["destination"] = new SelectList(b, "destination", "destination");
+            ViewData["date"] = new SelectList(c, "date", "date");
+
+
+            return View();
+        }
+        // post: Home Page
+        [HttpPost]
+        public async Task<ActionResult> SearchBuses(schedule schedule)
+        {
+            var schedules = db.schedules.Where(s => s.source == schedule.source && s.destination== schedule.destination && s.date==schedule.date).Distinct();
             return View(await schedules.ToListAsync());
+
         }
 
         // GET: schedules/Details/5

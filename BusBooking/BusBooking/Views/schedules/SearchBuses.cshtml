@@ -1,0 +1,163 @@
+﻿@model  BusBooking.schedule
+
+@{
+    ViewBag.Title = "Home";
+}
+<style>
+    body {
+        background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url("../../Scripts/Images/milkyway.jpg");
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-size: cover;
+        color: #fffbfb;
+    }
+
+    .book-bus-form-box {
+        max-width: 350px;
+        border: 1px solid #ced4da;
+        margin: 0% auto 107px;
+    }
+
+    .radio-btn {
+        margin: 0 85px;
+    }
+
+        .radio-btn .btn {
+            margin: 20px 10px 20px 0;
+            box-shadow: none;
+        }
+
+            .radio-btn .btn:after {
+                content: '';
+                height: 15px;
+                width: 15px;
+                top: -2px;
+                left: -1px;
+                background-color: #fff;
+                position: relative;
+                display: inline-block;
+                border: 3px solid #fff;
+                visibility: visible;
+                border-radius: 50%;
+            }
+
+            .radio-btn .btn:checked:after {
+                content: '';
+                background-color: #000;
+                transition: 0.5s;
+            }
+
+        .radio-btn span {
+            margin-right: 5px;
+            font-size: 12px;
+        }
+
+    .book-bus-form {
+        padding: 0 20px 20px;
+    }
+
+        .book-bus-form label {
+            margin-bottom: 5px;
+            margin-top: 10px;
+            font-size: 12px;
+        }
+
+    input::placeholder {
+        color: #fff !important;
+    }
+
+    .input-div {
+        width: 151px;
+        display: inline-block;
+    }
+
+    .form-control {
+        font-size: 12px !important;
+        border-radius: 2 !important;
+        color: #fff !important;
+        background: transparent !important;
+        box-shadow: none !important;
+    }
+
+    .select-date::-webkit-inner-spin-button,
+    .select-date::-webkit-outer-spin-button {
+        -webkit-appearance: none !important;
+        margin: 0 !important;
+    }
+
+    .select-date::-webkit-calendar-picker-indicator {
+        background: transparent !important;
+    }
+
+    .bus-select {
+        color: #fff !important;
+        font-size: 12px !important;
+        border: 1px solid #ced4da !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        background: transparent !important;
+    }
+
+        .bus-select option {
+            color: #000 !important;
+            font-size: 12px !important;
+            border: 1px solid #ced4da !important;
+            box-shadow: none !important;
+            border-radius: 0 !important;
+            background: transparent !important;
+        }
+
+    .bus {
+        border-radius: 10% !important;
+        background: linear-gradient(rgba(42,157,216,0.5),rgba(187,18,55,0.5)) !important;
+        font-size: 12px !important;
+        font-weight: bold;
+        width: 100%;
+        padding: 10px 0;
+        box-shadow: none !important;
+    }
+</style>
+<h2 style="text-align:center; font-weight:bold">Search for Buses</h2>
+<br />
+<br />
+@Html.AntiForgeryToken()
+@using (Html.BeginForm())
+{
+    <div class="form-group book-bus-form-box">
+
+        <div class="radio-btn">
+            <input type="radio" class="btn" name="check" checked="checked" /><span>Round Trip</span>
+            <input type="radio" class="btn" name="check" /><span>One Way</span>
+        </div>
+
+        <div class="book-bus-form">
+            <label>Source</label>
+            @Html.DropDownListFor(model => model.source , ViewData["source"] as SelectList, htmlAttributes: new { @class = "form-control bus-select", @placeholder = "Select the Source", @type = "text" })
+            <label>Destination</label>
+            @Html.DropDownListFor(model => model.destination, ViewData["destination"] as SelectList, htmlAttributes: new { @class = "form-control bus-select", @placeholder = "Select the Destination", @type = "text" })
+            
+
+            <div class="input-div">
+                <label>Date</label>
+                @Html.DropDownListFor(model => model.date, ViewData["date"] as SelectList, htmlAttributes: new { @class = "form-control select-date bus-select", @placeholder = "Select the date", @type = "text" })
+                
+            </div>
+
+            <div class="input-div">
+                <label>No. of Seats</label>
+                <input min="1" type="number" class="form-control " value="1" />
+            </div>
+
+            <div class="input-div">
+                <label>Class</label>
+                <select class="bus-select form-control">
+                    <option value="Economy">Economy</option>
+                    <option value="Business">Business</option>
+                </select>
+            </div>
+            <div class="input-div">
+                <button type="button" class="btn btn-primary bus"> Show Buses</button>
+            </div>
+        </div>
+    </div>
+}

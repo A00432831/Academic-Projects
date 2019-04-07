@@ -15,7 +15,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BusBooking</RootNamespace>
     <AssemblyName>BusBooking</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -169,6 +169,7 @@
     <Compile Include="Controllers\creditcard_typeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\schedulesController.cs" />
     <Compile Include="Controllers\transactionsController.cs" />
     <Compile Include="Controllers\usersController.cs" />
     <Compile Include="creditcard_type.cs">
@@ -187,7 +188,6 @@
     <Compile Include="user.cs">
       <DependentUpon>BTModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Views\schedulesController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="BTModel.Context.tt">
@@ -240,6 +240,7 @@
     <Content Include="Scripts\esm\popper-utils.js.map" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\Images\Capture.PNG" />
+    <Content Include="Scripts\Images\milkyway.jpg" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -258,7 +259,9 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -313,6 +316,7 @@
     <Content Include="Views\users\Details.cshtml" />
     <Content Include="Views\users\Edit.cshtml" />
     <Content Include="Views\users\Index.cshtml" />
+    <Content Include="Views\schedules\SearchBuses.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
