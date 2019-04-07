@@ -23,9 +23,20 @@
                         <a class="nav-link" href="@Url.Action("Index","Users")">User<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Pricing<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="@Url.Action("Index","buses_type")">Buses types<span class="sr-only">(current)</span></a>
                     </li>
-
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index","Schedules")">Schedules<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index","buses")">Buses<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index","creditcard_type")">Credit Card<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index","transactions")">Transactions<span class="sr-only">(current)</span></a>
+                    </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     @if (Session["user_id"] == null)
@@ -36,10 +47,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="@Url.Action("create","users")">Registration</a>
                         </li>
-                    } else
+                    }
+                    else
                     {
                         <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Details","users",Session["user_id"].ToString())">
+                            <a class="nav-link" href="@Url.Action("Details","users",new { id = Session["user_id"].ToString() })">
                                 @Session["email"].ToString()
                             </a>
                         </li>
