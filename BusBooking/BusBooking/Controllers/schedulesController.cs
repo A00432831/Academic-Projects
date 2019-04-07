@@ -20,8 +20,8 @@ namespace BusBooking.Controllers
         // GET: schedules
         public async Task<ActionResult> Index()
         {
-            var schedules = db.schedules.Include(s => s.bus);
-            return View();
+            var schedules = db.schedules.ToList();
+            return View(schedules);
         }
         // get : home page
         public async Task<ActionResult> SearchBuses()
