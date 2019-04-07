@@ -19,25 +19,28 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="@Url.Action("Index","Home")">Home <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Index","Users")">User<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Index","buses_type")">Buses types<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Index","Schedules")">Schedules<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Index","buses")">Buses<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Index","creditcard_type")">Credit Card<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Index","transactions")">Transactions<span class="sr-only">(current)</span></a>
-                    </li>
-                </ul>
+                    @if (Session["user_id"] != null)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Index", "Users")">User<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Index", "buses_type")">Buses types<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Index", "Schedules")">Schedules<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Index", "buses")">Buses<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Index", "creditcard_type")">Credit Card<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Index", "transactions")">Transactions<span class="sr-only">(current)</span></a>
+                        </li>
+                    }
+                    </ul>
                 <ul class="navbar-nav ml-auto">
                     @if (Session["user_id"] == null)
                     {
@@ -55,8 +58,10 @@
                                 @Session["email"].ToString()
                             </a>
                         </li>
-                        <li class="nav-link" href="@Url.Action("logout","login")">
-                            Log Out
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Logout","login")">
+                                Log Out
+                            </a>
                         </li>
                     }
 
