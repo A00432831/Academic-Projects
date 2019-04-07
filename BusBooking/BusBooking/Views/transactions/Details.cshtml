@@ -1,0 +1,107 @@
+﻿@model BusBooking.transaction
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>transaction</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nameOnCard)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nameOnCard)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cardNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cardNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.unit_price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.unit_price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.total_price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.total_price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.exp_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.exp_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.createdOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createdOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.createdBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createdBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.creditcard_type.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.creditcard_type.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.schedule.source)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.schedule.source)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.user.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.user.name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.t_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
