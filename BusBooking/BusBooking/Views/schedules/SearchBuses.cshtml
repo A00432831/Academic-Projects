@@ -23,14 +23,14 @@
 
         <div class="book-bus-form">
             <label>Source</label>
-            @Html.DropDownListFor(model => model.source, ViewData["source"] as SelectList, htmlAttributes: new { @class = "form-control bus-select", @placeholder = "Select the Source", @type = "text" })
+            @Html.DropDownListFor(model => model.source, ViewData["source"] as SelectList, htmlAttributes: new { @class = "bus-select form-control", @placeholder = "Select the Source", @type = "text" })
             <label>Destination</label>
-            @Html.DropDownListFor(model => model.destination, ViewData["destination"] as SelectList, htmlAttributes: new { @class = "form-control bus-select", @placeholder = "Select the Destination", @type = "text" })
+            @Html.DropDownListFor(model => model.destination, ViewData["destination"] as SelectList, htmlAttributes: new { @class = "bus-select form-control", @placeholder = "Select the Destination", @type = "text"})
 
 
             <div class="input-div">
                 <label>Date</label>
-                @Html.DropDownListFor(model => model.date, ViewData["date"] as SelectList, htmlAttributes: new { @class = "form-control select-date bus-select", @placeholder = "Select the date", @type = "text" })
+                @Html.DropDownListFor(model => model.date, ViewData["date"] as SelectList, htmlAttributes: new { @class = "bus-select form-control", @placeholder = "Select the date", @type = "text" })
 
             </div>
 
