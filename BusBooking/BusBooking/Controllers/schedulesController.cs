@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using BusBooking;
 using System.Web.WebPages.Html;
 using SelectListItem = System.Web.WebPages.Html.SelectListItem;
+using System.Web.Script.Serialization;
 
 namespace BusBooking.Controllers
 {
@@ -29,8 +30,16 @@ namespace BusBooking.Controllers
             var a = db.schedules.Select(arg => new { source = arg.source }).ToList().Distinct();
             var b = db.schedules.Select(arg => new { destination = arg.destination }).ToList().Distinct();
             var c = db.schedules.Select(arg => new { date = arg.date }).ToList().Distinct();
+            var d = new List<string>();
+            foreach (var item in c)
+            {
+                //System.Diagnostics.Debug.WriteLine("Before Date is {0} and After date is {1}",item.date,item.date.ToString("MM/dd/yyyy"));
+                d.Add(item.date);
+            }
+            d = d.Distinct().ToList();
             ViewData["source"] = new SelectList(a, "source", "source");
             ViewData["destination"] = new SelectList(b, "destination", "destination");
+            //ViewData["dateTime"] = new SelectList(c, "date", "date");
             ViewData["date"] = new SelectList(c, "date", "date");
 
 
@@ -38,10 +47,23 @@ namespace BusBooking.Controllers
         }
         // post: Home Page
         [HttpPost]
-        public async Task<ActionResult> SearchBuses(schedule schedule)
+        public ActionResult SearchBuses(string sources, string destinations, String dates)
         {
-            var schedules = db.schedules.Where(s => s.source == schedule.source && s.destination== schedule.destination && s.date==schedule.date).Distinct();
-            return View(await schedules.ToListAsync());
+            db.Configuration.ProxyCreationEnabled = false;
+            var schedules = db.schedules.Where(s => s.source == sources && s.destination == destinations && s.date == dates).ToList();
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            //string json = serializer.Serialize(schedules);
+            return Json(schedules.Select( s => new
+            {
+                source = s.source,
+                destination = s.destination,
+                cost = s.cost,
+                description = s.description,
+                date = s.date,
+                time = s.time.ToString(),
+                s_id=s.s_id
+            })
+                , JsonRequestBehavior.AllowGet);
 
         }
 
