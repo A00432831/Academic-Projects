@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
-using System.Web;
+using System.Threading.Tasks;
 using System.Web.Mvc;
-using BusBooking;
-using System.Text.RegularExpressions;
 
 namespace BusBooking.Controllers
 {
@@ -19,7 +16,7 @@ namespace BusBooking.Controllers
         // GET: transactions
         public async Task<ActionResult> Index()
         {
-            var transactions = db.transactions.Include(t => t.creditcard_type).Include(t => t.schedule).Include(t => t.user);
+            IQueryable<transaction> transactions = db.transactions.Include(t => t.creditcard_type).Include(t => t.schedule).Include(t => t.user);
             return View(await transactions.ToListAsync());
         }
 
@@ -38,10 +35,42 @@ namespace BusBooking.Controllers
             return View(transaction);
         }
 
-        // GET: transactions/Create
-        public ActionResult Create()
+        // GET: transactions/DetailsByUserId/5
+        public async Task<ActionResult> DetailsByUserId(int? id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            user users = await db.users.FindAsync(id);
+            ICollection<transaction> transaction = users.transactions;
+            if (transaction == null)
+            {
+                return HttpNotFound();
+            }
+            return View(transaction);
+        }
 
+
+        // GET: transactions/Create
+        public ActionResult Create() { 
+            ViewBag.c_id = new SelectList(db.creditcard_type, "c_id", "name");
+            ViewBag.s_id = new SelectList(db.schedules, "s_id", "source");
+            ViewBag.user_id = new SelectList(db.users, "user_id", "name");
+            return View();
+        }
+
+        // GET: transactions/Create?id=1&prize=10
+        /// <summary>
+        /// Schedule ID and Schedule Prize.
+        /// </summary>
+        /// <param name="id">Schedule ID</param>
+        /// <param name="prize">Schedule Prize.</param>
+        /// <returns></returns>
+        public ActionResult CreateFromSchedule(int id,int prize)
+        {
+            ViewBag.schedule_id = id;
+            ViewBag.schedule_prize = prize;
             ViewBag.c_id = new SelectList(db.creditcard_type, "c_id", "name");
             ViewBag.s_id = new SelectList(db.schedules, "s_id", "source");
             ViewBag.user_id = new SelectList(db.users, "user_id", "name");
@@ -55,27 +84,19 @@ namespace BusBooking.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "t_id,nameOnCard,cardNumber,unit_price,quantity,total_price,exp_Date,createdOn,createdBy,c_id,s_id,user_id")] transaction transaction)
         {
-            List<creditcard_type> cctype = new List<creditcard_type>();
-            cctype = db.creditcard_type.ToList();
-            var ccid = 0;
             string cardStart = transaction.cardNumber.Substring(0, 2);
-            var startWith = cctype.Select(x => x.starts_with);
-            var cclength = cctype.Select(x => x.length).FirstOrDefault();
-
-            if (String.Equals(cardStart, startWith) && transaction.cardNumber.Length == cclength)
-            {
-                ccid = cctype.Where(x => x.starts_with == cardStart).Select(x => x.c_id).FirstOrDefault();
-            }
-            else
+            creditcard_type cctype = db.creditcard_type.Where(x => x.starts_with == cardStart && x.length == transaction.cardNumber.Length).FirstOrDefault();
+            if (cctype == null)
             {
                 ViewBag.errormessage = "Invalid Card Number";
-                return RedirectToAction("Create");
+                return View("Create",transaction);
             }
-            transaction.c_id = ccid;
+            transaction.c_id = cctype.c_id;
+            transaction.s_id = 1;
+            transaction.total_price = transaction.quantity * transaction.unit_price;
             transaction.createdOn = DateTime.Now;
-            var userid = (string)Session["user_id"];
-
-            transaction.user_id = Convert.ToInt32(userid);
+            transaction.createdBy = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
+            transaction.user_id = Convert.ToInt32(Session["user_id"].ToString());
 
             if (ModelState.IsValid)
             {
@@ -84,9 +105,6 @@ namespace BusBooking.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.c_id = new SelectList(db.creditcard_type, "c_id", "name", transaction.c_id);
-            ViewBag.s_id = new SelectList(db.schedules, "s_id", "source", transaction.s_id);
-            ViewBag.user_id = new SelectList(db.users, "user_id", "name", transaction.user_id);
             return View(transaction);
         }
 

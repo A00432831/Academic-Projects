@@ -323,6 +323,7 @@
     <Content Include="Views\users\Edit.cshtml" />
     <Content Include="Views\users\Index.cshtml" />
     <Content Include="Views\schedules\SearchBuses.cshtml" />
+    <Content Include="Views\transactions\DetailsByUserId.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
