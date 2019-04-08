@@ -69,12 +69,13 @@ namespace BusBooking.Controllers
         /// <returns></returns>
         public ActionResult CreateFromSchedule(int id,int prize)
         {
-            ViewBag.schedule_id = id;
-            ViewBag.schedule_prize = prize;
+            transaction trans = new transaction();
+            trans.s_id= id;
+            trans.unit_price = prize;
             ViewBag.c_id = new SelectList(db.creditcard_type, "c_id", "name");
             ViewBag.s_id = new SelectList(db.schedules, "s_id", "source");
             ViewBag.user_id = new SelectList(db.users, "user_id", "name");
-            return View();
+            return View("Create",trans);
         }
 
         // POST: transactions/Create
