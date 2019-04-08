@@ -40,11 +40,11 @@ namespace BusBooking
 
         public string contact { get; set; }
         [Required(ErrorMessage = "Please Enter Apartment Number")]
-        [Display(Name = "Apartment Number")]
+        [Display(Name = "Apt#")]
         public string apt_number { get; set; }
 
         [Required(ErrorMessage = "Please Enter Street Number")]
-        [Display(Name = "Street Number")]
+        [Display(Name = "Street#")]
         public string street_number { get; set; }
 
         [Required(ErrorMessage = "Please Enter City")]
