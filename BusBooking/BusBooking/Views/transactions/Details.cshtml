@@ -5,103 +5,163 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2></h2>
 
 <div>
-    <h4>transaction</h4>
+    <h4>TRIP DETAILS</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.nameOnCard)
-        </dt>
+    <div class="row">
+        <h5>User Details</h5>
+    </div>
+    <div class="row">
+        <h5>==================================================================</h5>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <dl>
+                <dt>
+                    @Html.DisplayNameFor(model => model.user.name)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.nameOnCard)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.user.name)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-4">
+            <dl>
+                <dt>
+                    @Html.DisplayNameFor(model => model.user.email)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.cardNumber)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.user.email)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-4">
+            <dl>
+                <dt>
+                    @Html.DisplayNameFor(model => model.user.contact)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.cardNumber)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.user.contact)
+                </dd>
+            </dl>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.unit_price)
-        </dt>
+    </div>
+    <div class="row">
+        <h5>Trip Details</h5>
+    </div>
+    <div class="row">
+        <h5>==================================================================</h5>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <dl>
+                <dt>
+                    @Html.DisplayNameFor(model => model.schedule.source)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.unit_price)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.schedule.source)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-4">
+            <dl>
+                <dt>
+                    @Html.DisplayNameFor(model => model.schedule.destination)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.quantity)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.schedule.destination)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-4">
+            <dl>
+                <dt>
+                    @Html.DisplayNameFor(model => model.quantity)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.quantity)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.quantity)
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="row">
+        <h5>Payment Details</h5>
+    </div>
+    <div class="row">
+        <h5>==================================================================</h5>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <dl>
+                <dt>
+                    @Html.DisplayNameFor(model => model.nameOnCard)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.nameOnCard)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-4">
+            <dl>
+                <dt>
+                    @Html.DisplayFor(model => model.creditcard_type.name)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.cardNumber)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-4">
+            <dl>
+                <dt>
+                    @Html.DisplayNameFor(model => model.unit_price)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.total_price)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.unit_price)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.total_price)
-        </dd>
+            </dl>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.exp_Date)
-        </dt>
+    </div>
+    <div class="row">
+        
+        <div class="col-md-4">
+            <dl>
+                <dt>
+                    @Html.DisplayNameFor(model => model.total_price)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.exp_Date)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.total_price)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.createdOn)
-        </dt>
+            </dl>
+        </div>
+        <div class="col-md-4">
+            <dl>
+                <dt>
+                    @Html.DisplayNameFor(model => model.createdOn)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.createdOn)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.createdOn)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.createdBy)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.createdBy)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.creditcard_type.name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.creditcard_type.name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.schedule.source)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.schedule.source)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.user.name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.user.name)
-        </dd>
-
-    </dl>
+            </dl>
+        </div>
+    </div>
+    <dl class="dl-horizontal"></dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.t_id }) |
-    @Html.ActionLink("Back to List", "Index")
 </p>

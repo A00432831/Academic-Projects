@@ -48,10 +48,7 @@
                                 <a class="nav-link" href="@Url.Action("searchbuses", "schedules")">Search Buses<span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="@Url.Action("Index", "transactions")">Buses types<span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="@Url.Action("Index", "Schedules")">Schedules<span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="@Url.Action("DetailsByUserId", "transactions",new { id = Session["user_id"].ToString() })">Transactions<span class="sr-only">(current)</span></a>
                             </li>
                         }
                     }

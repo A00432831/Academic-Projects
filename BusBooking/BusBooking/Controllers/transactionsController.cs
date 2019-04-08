@@ -35,6 +35,7 @@ namespace BusBooking.Controllers
             return View(transaction);
         }
 
+
         // GET: transactions/DetailsByUserId/5
         public async Task<ActionResult> DetailsByUserId(int? id)
         {
