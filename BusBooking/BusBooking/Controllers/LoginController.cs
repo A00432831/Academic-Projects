@@ -10,16 +10,22 @@ namespace BusBooking.Controllers
     {
 
         // GET: Login
+        
         public ActionResult LoginPage()
         {
             return View();
         }
-
+        /// <summary>
+        /// Authenticates the user by email and password
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Authentication(BusBooking.user user)
         {
             using (BUSTICKETEntities db = new BUSTICKETEntities())
             {
+                //Check wheteher the email and password provided by the user matches that in the database
                 var userDetails = db.users.Where(x => x.email == user.email && x.password == user.password).FirstOrDefault();
                 if (userDetails == null)
                 {
@@ -38,7 +44,10 @@ namespace BusBooking.Controllers
                 }
             }
         }
-
+        /// <summary>
+        /// User will be able to logout and will redirect to the home page
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Logout()
         {
             Session.Abandon();

@@ -92,7 +92,7 @@ namespace BusBooking
         [Display(Name = "Role")]
         public string role { get; set; }
 
-
+        //required field and checks whether it matches the password with error message if not valid
         [NotMapped]
         [Required(ErrorMessage = "Please Enter Confirm Password")]
         [Display(Name = "Confirm Password")]
