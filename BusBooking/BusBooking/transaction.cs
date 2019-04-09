@@ -31,7 +31,13 @@ namespace BusBooking
         [Display(Name = "Card Number")]
         public string cardNumber { get; set; }
         public decimal unit_price { get; set; }
-        public int quantity { get; set; }
+
+        //[Range(1,3,ErrorMessage ="You can book only 1 to 3 seats only")]
+        [Required(ErrorMessage = "Please enter the no. of tickets")]
+        [Display(Name = "Quantity")]
+        public int quantity { get; set; } = 1;
+
+        [Display(Name = "Total Price")]
         public decimal total_price { get; set; }
 
         //Validations for expiry date between 01/2016---12/2031

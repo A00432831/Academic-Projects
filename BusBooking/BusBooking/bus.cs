@@ -20,16 +20,19 @@ namespace BusBooking
         {
             this.schedules = new HashSet<schedule>();
         }
+       
         [Display(Name = "Bus ID")]
         public int bus_id { get; set; }
-        // Validations for Bus name 
+
+        //Validation for bus name and error message if not valid
         [Display(Name = "Bus Name")]
         [StringLength(50, ErrorMessage = "The Bus name must be at least 4 characters long.", MinimumLength = 4)]
         public string bus_name { get; set; }
       
         [Display(Name = "Bus Type")]
         public int bus_type_id { get; set; }
-        //Validations for Total seats
+
+        //Validation for no. of total seats in the buses and error message if not valid
         [Display(Name = "Total Seats")]
         [RegularExpression("^[0-9]{1,10}$", ErrorMessage = "Please Enter numerics")]
         public int total_seats { get; set; }
