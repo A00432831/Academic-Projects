@@ -29,10 +29,11 @@ CREATE TABLE schedules (
 					s_id int primary key identity(1,1) NOT NULL,
 					 [source] VARCHAR(50) NOT NULL,
 					  destination VARCHAR(50) NOT NULL,
-					   [date] datetime NOT NULL,
+					   [date] VARCHAR(10) NOT NULL,
 					   cost int NOT NULL,
 					   bus_id int not null,
-					   description varchar(100) NOT NULL
+					   description varchar(100) NOT NULL,
+					   [time] TIME(7) NOT NULL
 					    );
 GO
 

@@ -20,6 +20,14 @@ namespace BusBooking.Controllers
             return View(await transactions.ToListAsync());
         }
 
+        [HttpPost]
+        public async Task<ActionResult> Index(string schedule_id)
+        {
+            var scheduleId = schedule_id;
+            var transactions = db.transactions.Include(t => t.creditcard_type).Include(t => t.schedule).Include(t => t.user);
+            return View(await transactions.ToListAsync());
+        }
+
         // GET: transactions/Details/5
         public async Task<ActionResult> Details(int? id)
         {

@@ -32,7 +32,12 @@ namespace BusBooking
         public string destination { get; set; }
 
         [Display(Name = "Date of Travel")]
-        public System.DateTime date { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+        public string date { get; set; }
+
+        [Display(Name = "Time of Travel")]
+        public TimeSpan time { get; set; }
 
         [Display(Name = "Cost")]
         [Required(ErrorMessage = "required")]

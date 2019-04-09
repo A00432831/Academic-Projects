@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6173bf462ca64b7d9d81bf4fd52e28a6" Name="Diagram1">
+      <Diagram DiagramId="6173bf462ca64b7d9d81bf4fd52e28a6" Name="Diagram1" ZoomLevel="77">
         <EntityTypeShape EntityType="BUSTICKETModel.bus" Width="1.5" PointX="3" PointY="1.875" />
         <EntityTypeShape EntityType="BUSTICKETModel.buses_type" Width="1.5" PointX="0.75" PointY="2.125" />
         <EntityTypeShape EntityType="BUSTICKETModel.creditcard_type" Width="1.5" PointX="5.25" PointY="5.75" />
