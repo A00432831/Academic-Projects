@@ -181,8 +181,8 @@
 
             <div class="input-div">
                 <label>Date</label>
-                @Html.DropDownListFor(model => model.date, ViewData["date"] as SelectList, htmlAttributes: new { @id = "dateSelect", @class = "form-control select-date bus-select", @placeholder = "Select the date", @type = "text" })
-
+               
+                <input placeholder="Select the date" class="form-control select-date bus-select" type="text" onmouseover="(this.type='date')" onmouseout="(this.type='text')" id="dateSelect"/>
             </div>
 
             <div class="input-div">
@@ -307,7 +307,7 @@
         //var id = element.attr("id");
         var source = $('#sourceSelect option:selected').val();
         var destination = $('#destinationSelect option:selected').val();
-        var date = $('#dateSelect option:selected').val();
+        var date = $('#dateSelect').val();
         var dataJson = JSON.stringify({ "sources": source, "destinations": destination, "dates": date });
         var $elseNew = $('#showTablePlaceholder');
         $.ajax({

@@ -33,7 +33,6 @@ namespace BusBooking
 
         [Display(Name = "Date of Travel")]
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public string date { get; set; }
 
         [Display(Name = "Time of Travel")]

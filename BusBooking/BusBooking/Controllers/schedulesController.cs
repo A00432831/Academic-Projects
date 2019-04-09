@@ -47,10 +47,11 @@ namespace BusBooking.Controllers
         }
         // post: Home Page
         [HttpPost]
-        public ActionResult SearchBuses(string sources, string destinations, String dates)
+        public ActionResult SearchBuses(string sources, string destinations, DateTime dates)
         {
             db.Configuration.ProxyCreationEnabled = false;
-            var schedules = db.schedules.Where(s => s.source == sources && s.destination == destinations && s.date == dates).ToList();
+            string date = dates.Date.ToString("yyyy-MM-dd");
+            var schedules = db.schedules.Where(s => s.source == sources && s.destination == destinations && s.date == date).ToList();
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             //string json = serializer.Serialize(schedules);
             return Json(schedules.Select( s => new
