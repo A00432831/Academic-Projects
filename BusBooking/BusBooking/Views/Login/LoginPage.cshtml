@@ -5,7 +5,91 @@
 <style>
     .center_div {
         margin: 0 auto;
-        width: 40% /* value of your choice which suits your alignment */
+        width: 40% ;/* value of your choice which suits your alignment */
+        padding-top:10em;
+    }
+    body {
+        
+        -webkit-transition: background 0.4s ease;
+        -moz-transition: background 0.4s ease;
+        -o-transition: background 0.4s ease;
+        transition: background 0.4s ease;
+    }
+
+    label{
+        color:White!important;
+        font-weight:700;
+    }
+    input::placeholder{
+        color:white!important;
+    }
+    input::placeholder:hover {
+        color: black !important;
+    }
+    input:hover {
+        background-color:gold!important;
+        color:black!important;
+    }
+    .nav-link:hover{
+        color:gold;
+    }
+    .nav-brand:hover {
+        color: gold!important;
+    }
+    hr {
+        display: none;
+    }
+    .navbar {
+        padding-top: 0px!important;
+    }
+
+    body{
+  -webkit-animation: fade 4s infinite;
+  -moz-animation: fade 4s infinite;
+  -o-animation: fade 4s infinite;
+  animation: fade 4s infinite;
+}
+        nav a {
+            font-size: 12px;
+            color: #0F9;
+            -webkit-transition: color 2s, font-size 2s;
+            -moz-transition: color 2s, font-size 2s;
+            -o-transition: color 2s, font-size 2s;
+            transition: color 2s, font-size 2s;
+        }
+
+    nav a:hover {
+        font-size: 40px;
+        color: #fc0;
+    }
+    
+    body {
+        position: relative;
+        top: 30px;
+        width: 100%;
+        height: 200px;
+        background-image: url('../../Scripts/Images/UntitledLogo.png');
+        background-repeat: no-repeat;
+        background-position: top;
+        background-size: 110% ;
+        padding-top: 0px!important;
+        transition: all .2s ease;
+        -webkit-animation: fade 4s infinite;
+        -moz-animation: fade 4s infinite;
+        -o-animation: fade 4s infinite;
+        animation: fade 4s infinite;
+    }
+body:hover{
+  background-size: 180% auto;
+}
+#login_button:hover{
+    background-color:gold;
+    color:black;
+}
+    #reset_button:hover {
+        background-color: gold;
+        color: black;
+        
     }
 </style>
 <br />
@@ -13,7 +97,7 @@
 
 @using (Html.BeginForm("Authentication", "Login", FormMethod.Post))
 {
-    <img src="~/Scripts/Images/Capture.PNG" class="" style="width: 50%;margin:26px 216px auto !important; padding-left:0 0 0 168px!important" alt="Responsive image">
+  <!-- <img src="~/Scripts/Images/SpaceBusLogo.jpg" class="" style="width: 50%;margin:26px 216px auto !important; padding-left:0 0 0 168px!important" alt="Responsive image" />-->
     <div id="login-div" class="center_div">
         <div class="form-group" id="login-div">
             <label for="Email">Email address</label><br />
@@ -28,10 +112,12 @@
         <div class="form-group">
             <label class="field-validation-error"> @Html.DisplayFor(model => model.loginErrorMessage)</label>
         </div>
-        <button type="submit" class="btn btn-primary" style="margin-left:65px">Sign In</button>
-        <button type="reset" class="btn btn-info" style="position:center">Reset</button>
+        <button type="submit" id="login_button" class="btn btn-primary" style="margin-left:65px">Sign In</button>
+        <button type="reset" id="reset_button" class="btn btn-info" style="position:center">Reset</button>
     </div>
 }
-
+<script>
+  
+</script>
 
 
