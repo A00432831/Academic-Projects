@@ -43,7 +43,7 @@ namespace BusBooking.Controllers
 
 
         // GET: users/Create
-        
+
         public ActionResult Create()
         {
             return View();
@@ -65,10 +65,10 @@ namespace BusBooking.Controllers
             us = db.users.ToList();
             // LINQ Query for Validating Uniqueness of Email Id
             string users = us.Where(x => x.email == user.email).Select(x => x.email).FirstOrDefault();
-           
+
             if (ModelState.IsValid && users == null)
             {
-               
+
                 db.users.Add(user);
                 int userId = await db.SaveChangesAsync();
                 if (Session["user_id"] != null)
@@ -80,7 +80,11 @@ namespace BusBooking.Controllers
                     return RedirectToAction("LoginPage", "login");
                 }
             }
-            ModelState.AddModelError("", "User Already exists");
+            else if(users != null && users.Any())
+            {
+
+                ModelState.AddModelError("", "User Already exists");
+            }
 
             return View(user);
         }
