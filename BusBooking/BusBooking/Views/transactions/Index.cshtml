@@ -6,16 +6,14 @@
 }
 
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.nameOnCard)
+            @Html.DisplayNameFor(model => model.schedule.source)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.cardNumber)
+            @Html.DisplayNameFor(model => model.schedule.destination)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.unit_price)
@@ -27,22 +25,7 @@
             @Html.DisplayNameFor(model => model.total_price)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.exp_Date)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.createdOn)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.createdBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.creditcard_type.name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.schedule.source)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.user.name)
         </th>
         <th></th>
     </tr>
@@ -50,10 +33,10 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.nameOnCard)
+            @Html.DisplayFor(modelItem => item.schedule.source)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.cardNumber)
+            @Html.DisplayFor(modelItem => item.schedule.destination)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.unit_price)
@@ -64,28 +47,12 @@
         <td>
             @Html.DisplayFor(modelItem => item.total_price)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.exp_Date)
-        </td>
+
         <td>
             @Html.DisplayFor(modelItem => item.createdOn)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.createdBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.creditcard_type.name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.schedule.source)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.user.name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.t_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.t_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.t_id })
+            @Html.ActionLink("Details", "Details", new { id = item.t_id }) 
         </td>
     </tr>
 }
