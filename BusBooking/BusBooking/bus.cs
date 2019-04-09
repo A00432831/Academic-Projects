@@ -11,8 +11,7 @@ namespace BusBooking
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class bus
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,18 +19,10 @@ namespace BusBooking
         {
             this.schedules = new HashSet<schedule>();
         }
-        [Display(Name = "Bus ID")]
+    
         public int bus_id { get; set; }
-
-        [Display(Name = "Bus Name")]
-        [StringLength(50, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         public string bus_name { get; set; }
-
-        [Display(Name = "Bus Type")]
         public int bus_type_id { get; set; }
-
-        [Display(Name = "Total Seats")]
-        [RegularExpression("^[0-9]{1,10}$", ErrorMessage = "Please Enter numerics")]
         public int total_seats { get; set; }
     
         public virtual buses_type buses_type { get; set; }

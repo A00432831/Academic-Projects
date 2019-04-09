@@ -11,7 +11,8 @@ GO
 
 CREATE TABLE users ( 
 					[user_id] INT primary key identity(1,1) NOT NULL,
-					 [name] VARCHAR(50) NOT NULL,
+					 [firstname] VARCHAR(50) NOT NULL,
+					 [lastname] VARCHAR(50) NOT NULL,
 					  email VARCHAR(50) NOT NULL,
 					   contact VARCHAR(11) NOT NULL ,
 					   apt_number VARCHAR(10) NOT NULL,
