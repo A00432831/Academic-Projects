@@ -11,7 +11,8 @@ namespace BusBooking
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class transaction
     {
         public int t_id { get; set; }
