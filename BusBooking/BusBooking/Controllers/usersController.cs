@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
-using System.Web;
+using System.Threading.Tasks;
 using System.Web.Mvc;
-using BusBooking;
 
 namespace BusBooking.Controllers
 {
@@ -18,7 +15,7 @@ namespace BusBooking.Controllers
         // GET: users
         public async Task<ActionResult> Index()
         {
-            
+
             return View(await db.users.ToListAsync());
         }
 
@@ -34,11 +31,11 @@ namespace BusBooking.Controllers
             {
                 return HttpNotFound();
             }
-            
+
             return View(user);
         }
 
-        
+
 
         // GET: users/Create
         public ActionResult Create()
@@ -55,12 +52,19 @@ namespace BusBooking.Controllers
         {
             List<user> us = new List<user>();
             us = db.users.ToList();
-            var users = us.Where(x => x.email == user.email).Select(x => x.email).FirstOrDefault();
+            string users = us.Where(x => x.email == user.email).Select(x => x.email).FirstOrDefault();
             if (ModelState.IsValid && users == null)
             {
                 db.users.Add(user);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                int userId = await db.SaveChangesAsync();
+                if (Session["user_id"] != null)
+                {
+                    return RedirectToAction("Details", new { Id = userId });
+                }
+                else
+                {
+                    return RedirectToAction("LoginPage", "login");
+                }
             }
             ModelState.AddModelError("", "User Already exists");
 
@@ -86,12 +90,12 @@ namespace BusBooking.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "user_id,name,email,contact,apt_number,street_number,city,state,country,postal_Code,role,password,confirmPassword")] user user)
+        public ActionResult Edit([Bind(Include = "user_id,name,email,contact,apt_number,street_number,city,state,country,postal_Code,role,password,confirmPassword")] user user)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(user).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             return View(user);

@@ -309,9 +309,7 @@
     <Content Include="Views\creditcard_type\Edit.cshtml" />
     <Content Include="Views\creditcard_type\Index.cshtml" />
     <Content Include="Views\transactions\Create.cshtml" />
-    <Content Include="Views\transactions\Delete.cshtml" />
     <Content Include="Views\transactions\Details.cshtml" />
-    <Content Include="Views\transactions\Edit.cshtml" />
     <Content Include="Views\transactions\Index.cshtml" />
     <Content Include="Views\schedules\Create.cshtml" />
     <Content Include="Views\schedules\Delete.cshtml" />
@@ -321,7 +319,6 @@
     <Content Include="Views\users\Create.cshtml" />
     <Content Include="Views\users\Delete.cshtml" />
     <Content Include="Views\users\Details.cshtml" />
-    <Content Include="Views\users\Edit.cshtml" />
     <Content Include="Views\users\Index.cshtml" />
     <Content Include="Views\schedules\SearchBuses.cshtml" />
     <Content Include="Views\transactions\DetailsByUserId.cshtml" />
