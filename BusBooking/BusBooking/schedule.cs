@@ -42,6 +42,7 @@ namespace BusBooking
         [Display(Name = "Cost")]
         [Required(ErrorMessage = "required")]
         public int cost { get; set; }
+
         [Display(Name = "Bus Type")]
         public int bus_id { get; set; }
         [Display(Name = "Description")]
