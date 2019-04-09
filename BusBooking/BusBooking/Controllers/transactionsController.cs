@@ -102,7 +102,6 @@ namespace BusBooking.Controllers
                 return View("Create",transaction);
             }
             transaction.c_id = cctype.c_id;
-            transaction.s_id = 1;
             transaction.total_price = transaction.quantity * transaction.unit_price;
             transaction.createdOn = DateTime.Now;
             transaction.createdBy = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
