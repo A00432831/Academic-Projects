@@ -23,15 +23,18 @@ namespace BusBooking
     
         public int c_id { get; set; }
 
+        //Validation for credit card name and error message if not valid
         [Display(Name = "Credit Card Name")]
-        [StringLength(50, ErrorMessage = "The must be at least 9 characters long.", MinimumLength = 6)]
+        [StringLength(50, ErrorMessage = "The must be at least 6 characters long.", MinimumLength = 6)]
         [Required(ErrorMessage = "required")]
         public string name { get; set; }
 
+        //Validation for starting two digits of credit  card and error message if not valid
         [Display(Name = "Credit Card Number Starts with")]
         [RegularExpression(@"^\d{2}$", ErrorMessage ="Give only two numbers")]
         public string starts_with { get; set; }
 
+        //Validation for the length of credit card number and error message if not valid
         [Display(Name = "Length")]
         [RegularExpression(@"^\d{2}$", ErrorMessage = "Give only two numbers")]
         public decimal length { get; set; }
