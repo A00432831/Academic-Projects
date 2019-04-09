@@ -20,7 +20,7 @@ namespace BusBooking
         {
             this.schedules = new HashSet<schedule>();
         }
-    
+        [Display(Name = "Bus ID")]
         public int bus_id { get; set; }
 
         [Display(Name = "Bus Name")]
