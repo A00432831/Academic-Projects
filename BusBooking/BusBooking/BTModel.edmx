@@ -65,7 +65,8 @@
             <PropertyRef Name="user_id" />
           </Key>
           <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="firstname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="lastname" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="contact" Type="varchar" MaxLength="11" Nullable="false" />
           <Property Name="apt_number" Type="varchar" MaxLength="10" Nullable="false" />
@@ -175,7 +176,6 @@
           <EntitySet Name="creditcard_type" EntityType="BUSTICKETModel.creditcard_type" />
           <EntitySet Name="schedules" EntityType="BUSTICKETModel.schedule" />
           <EntitySet Name="transactions" EntityType="BUSTICKETModel.transaction" />
-          <EntitySet Name="users" EntityType="BUSTICKETModel.user" />
           <AssociationSet Name="FK_BUSES" Association="BUSTICKETModel.FK_BUSES">
             <End Role="buses_type" EntitySet="buses_type" />
             <End Role="bus" EntitySet="buses" />
@@ -192,6 +192,7 @@
             <End Role="schedule" EntitySet="schedules" />
             <End Role="transaction" EntitySet="transactions" />
           </AssociationSet>
+          <EntitySet Name="users" EntityType="BUSTICKETModel.user" />
           <AssociationSet Name="FK_TRANSACTION_USERS" Association="BUSTICKETModel.FK_TRANSACTION_USERS">
             <End Role="user" EntitySet="users" />
             <End Role="transaction" EntitySet="transactions" />
@@ -261,24 +262,6 @@
           <NavigationProperty Name="schedule" Relationship="BUSTICKETModel.FK_TRANSACTION_SCHEDULE" FromRole="transaction" ToRole="schedule" />
           <NavigationProperty Name="user" Relationship="BUSTICKETModel.FK_TRANSACTION_USERS" FromRole="transaction" ToRole="user" />
         </EntityType>
-        <EntityType Name="user">
-          <Key>
-            <PropertyRef Name="user_id" />
-          </Key>
-          <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="contact" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
-          <Property Name="apt_number" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="street_number" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="city" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="state" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="country" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="postal_Code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="role" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="password" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="transactions" Relationship="BUSTICKETModel.FK_TRANSACTION_USERS" FromRole="user" ToRole="transaction" />
-        </EntityType>
         <Association Name="FK_BUSES">
           <End Type="BUSTICKETModel.buses_type" Role="buses_type" Multiplicity="1" />
           <End Type="BUSTICKETModel.bus" Role="bus" Multiplicity="*" />
@@ -327,6 +310,25 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firstname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lastname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="contact" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="apt_number" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="street_number" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="city" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="state" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="country" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="postal_Code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="role" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="transactions" Relationship="BUSTICKETModel.FK_TRANSACTION_USERS" FromRole="user" ToRole="transaction" />
+        </EntityType>
         <Association Name="FK_TRANSACTION_USERS">
           <End Type="BUSTICKETModel.user" Role="user" Multiplicity="1" />
           <End Type="BUSTICKETModel.transaction" Role="transaction" Multiplicity="*" />
@@ -418,7 +420,8 @@
                 <ScalarProperty Name="apt_number" ColumnName="apt_number" />
                 <ScalarProperty Name="contact" ColumnName="contact" />
                 <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
               </MappingFragment>
             </EntityTypeMapping>

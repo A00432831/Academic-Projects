@@ -59,14 +59,16 @@ namespace BusBooking.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "user_id,name,email,contact,apt_number,street_number,city,state,country,postal_Code,password,role,confirmPassword")] user user)
+        public async Task<ActionResult> Create([Bind(Include = "user_id,firstname,lastname,email,contact,apt_number,street_number,city,state,country,postal_Code,password,role,confirmPassword")] user user)
         {
             List<user> us = new List<user>();
             us = db.users.ToList();
             // LINQ Query for Validating Uniqueness of Email Id
             string users = us.Where(x => x.email == user.email).Select(x => x.email).FirstOrDefault();
+           
             if (ModelState.IsValid && users == null)
             {
+               
                 db.users.Add(user);
                 int userId = await db.SaveChangesAsync();
                 if (Session["user_id"] != null)
@@ -107,7 +109,7 @@ namespace BusBooking.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "user_id,name,email,contact,apt_number,street_number,city,state,country,postal_Code,role,password,confirmPassword")] user user)
+        public ActionResult Edit([Bind(Include = "user_id,firstname,lastname,email,contact,apt_number,street_number,city,state,country,postal_Code,role,password,confirmPassword")] user user)
         {
             if (ModelState.IsValid)
             {

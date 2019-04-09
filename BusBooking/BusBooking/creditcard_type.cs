@@ -11,8 +11,7 @@ namespace BusBooking
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class creditcard_type
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,18 +21,8 @@ namespace BusBooking
         }
     
         public int c_id { get; set; }
-
-        [Display(Name = "Credit Card Name")]
-        [StringLength(50, ErrorMessage = "The must be at least 9 characters long.", MinimumLength = 6)]
-        [Required(ErrorMessage = "required")]
         public string name { get; set; }
-
-        [Display(Name = "Credit Card Number Starts with")]
-        [RegularExpression(@"^\d{2}$", ErrorMessage ="Give only two numbers")]
         public string starts_with { get; set; }
-
-        [Display(Name = "Length")]
-        [RegularExpression(@"^\d{2}$", ErrorMessage = "Give only two numbers")]
         public decimal length { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
