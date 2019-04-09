@@ -12,6 +12,7 @@
         background-position: center;
         background-size: cover;
         color: #fffbfb;
+        
     }
 
     .book-bus-form-box {
@@ -33,7 +34,7 @@
                 content: '';
                 height: 15px;
                 width: 15px;
-                top: -2px;
+                top: -5px;
                 left: -1px;
                 background-color: #fff;
                 position: relative;
@@ -308,6 +309,7 @@
         var destination = $('#destinationSelect option:selected').val();
         var date = $('#dateSelect option:selected').val();
         var dataJson = JSON.stringify({ "sources": source, "destinations": destination, "dates": date });
+        var $elseNew = $('#showTablePlaceholder');
         $.ajax({
             type: 'POST',
             url: '@Url.Action("SearchBuses", "schedules")',
@@ -315,8 +317,9 @@
             dataType: 'json',
             data: dataJson,
             success: function (response) {
-                if (response != "" ) {
-                    $('#showBusesTable').show();
+                if (response != "") {
+                    var $new = $('#showBusesTable');
+                  
                     $('#showTablePlaceholder').hide();
                     $('#showBusesTable tbody tr').empty();
                     $('#showTablePlaceholder').hide();
@@ -331,12 +334,14 @@
                             "<td>" + time + "</td>" +
                             "<td> <a href='/transactions/createfromschedule?id=" + response[i].s_id + "&prize=" + response[i].cost+"'> Book Bus </a></td>"
                         );
+                        
                     });
+                    $new.show('slow');
                 }
                 else {
-                    
-                    $('#showTablePlaceholder').show();
                     $('#showBusesTable').hide();
+                    $elseNew.show('slow');
+                    
                 }
             }
         });

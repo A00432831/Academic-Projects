@@ -22,6 +22,11 @@ namespace BusBooking.Controllers
         }
 
         // GET: creditcard_type/Details/5
+        /// <summary>
+        /// Fetching Credit card details based on Unique Creditcard ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -37,6 +42,10 @@ namespace BusBooking.Controllers
         }
 
         // GET: creditcard_type/Create
+        /// <summary>
+        /// Creation of Record for Different Credit card types by Admin
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Create()
         {
             return View();
@@ -60,6 +69,11 @@ namespace BusBooking.Controllers
         }
 
         // GET: creditcard_type/Edit/5
+        /// <summary>
+        /// Editing of Existing Creditcard Details by Admin
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -91,6 +105,11 @@ namespace BusBooking.Controllers
         }
 
         // GET: creditcard_type/Delete/5
+        /// <summary>
+        /// Deletion of CreditCard type based on Unique Id by Admin
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)

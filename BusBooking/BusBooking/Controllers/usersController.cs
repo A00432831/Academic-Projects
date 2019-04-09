@@ -20,6 +20,11 @@ namespace BusBooking.Controllers
         }
 
         // GET: users/Details/5
+        /// <summary>
+        /// Fetching User Details
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -38,12 +43,18 @@ namespace BusBooking.Controllers
 
 
         // GET: users/Create
+        
         public ActionResult Create()
         {
             return View();
         }
 
         // POST: users/Create
+        /// <summary>
+        ///Creating New Users and their  Validation from DB to prevent duplicate User Creation based on Unique Email ID 
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -52,6 +63,7 @@ namespace BusBooking.Controllers
         {
             List<user> us = new List<user>();
             us = db.users.ToList();
+            // LINQ Query for Validating Uniqueness of Email Id
             string users = us.Where(x => x.email == user.email).Select(x => x.email).FirstOrDefault();
             if (ModelState.IsValid && users == null)
             {
@@ -71,6 +83,11 @@ namespace BusBooking.Controllers
             return View(user);
         }
         // GET: users/Edit/5
+        /// <summary>
+        /// Editing of Existing Users
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -102,6 +119,11 @@ namespace BusBooking.Controllers
         }
 
         // GET: users/Delete/5
+        /// <summary>
+        /// Deleting of Users and their Details
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)

@@ -23,6 +23,11 @@ namespace BusBooking.Controllers
         }
 
         // GET: buses/Details/5
+        /// <summary>
+        /// Fectching Details of Buses based on Unique ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -38,8 +43,12 @@ namespace BusBooking.Controllers
         }
 
         // GET: buses/Create
+        /// <summary>
+        /// Creation of Buses based on exisiting bustypes
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Create()
-        {
+        {   // fetching all existing bustypes with their respective Id's
             ViewBag.bus_type_id = new SelectList(db.buses_type, "bus_type_id", "name");
             return View();
         }
@@ -63,6 +72,11 @@ namespace BusBooking.Controllers
         }
 
         // GET: buses/Edit/5
+        /// <summary>
+        /// Editing of Bus detailes based on Unique ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -96,6 +110,11 @@ namespace BusBooking.Controllers
         }
 
         // GET: buses/Delete/5
+        /// <summary>
+        /// Deleting of Bus details based on Unique ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)

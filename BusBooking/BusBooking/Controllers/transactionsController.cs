@@ -14,6 +14,10 @@ namespace BusBooking.Controllers
         private BUSTICKETEntities db = new BUSTICKETEntities();
 
         // GET: transactions
+        /// <summary>
+        /// Get all transaction
+        /// </summary>
+        /// <returns></returns>
         public async Task<ActionResult> Index()
         {
             IQueryable<transaction> transactions = db.transactions.Include(t => t.creditcard_type).Include(t => t.schedule).Include(t => t.user);
@@ -29,6 +33,11 @@ namespace BusBooking.Controllers
         }
 
         // GET: transactions/Details/5
+        /// <summary>
+        /// Details of transaction
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -45,6 +54,11 @@ namespace BusBooking.Controllers
 
 
         // GET: transactions/DetailsByUserId/5
+        /// <summary>
+        /// Details of transaction by user id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<ActionResult> DetailsByUserId(int? id)
         {
             if (id == null)
@@ -62,6 +76,7 @@ namespace BusBooking.Controllers
 
 
         // GET: transactions/Create
+
         public ActionResult Create() { 
             ViewBag.c_id = new SelectList(db.creditcard_type, "c_id", "name");
             ViewBag.s_id = new SelectList(db.schedules, "s_id", "source");
@@ -90,6 +105,11 @@ namespace BusBooking.Controllers
         // POST: transactions/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Creates the transactions and stores it in the database after checking the validations
+        /// </summary>
+        /// <param name="transaction"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "t_id,nameOnCard,cardNumber,unit_price,quantity,total_price,exp_Date,createdOn,createdBy,c_id,s_id,user_id")] transaction transaction)

@@ -170,7 +170,7 @@ table {
         color: white;
     }
 
-    table tr:hover {
+    table tr:nth-child(odd) {
         background-color: rgba(42,157,216,0.5);
         color: white;
     }
