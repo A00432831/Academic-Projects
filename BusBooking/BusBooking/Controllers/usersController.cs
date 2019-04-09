@@ -18,6 +18,7 @@ namespace BusBooking.Controllers
         // GET: users
         public async Task<ActionResult> Index()
         {
+            
             return View(await db.users.ToListAsync());
         }
 
@@ -33,6 +34,7 @@ namespace BusBooking.Controllers
             {
                 return HttpNotFound();
             }
+            
             return View(user);
         }
 
