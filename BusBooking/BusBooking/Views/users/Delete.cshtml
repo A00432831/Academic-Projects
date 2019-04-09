@@ -15,11 +15,22 @@
         <div class="col-md-4">
             <dl>
                 <dt>
-                    @Html.DisplayNameFor(model => model.name)
+                    @Html.DisplayNameFor(model => model.firstname)
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.name)
+                    @Html.DisplayFor(model => model.firstname)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-4">
+            <dl>
+                <dt>
+                    @Html.DisplayNameFor(model => model.lastname)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.lastname)
                 </dd>
             </dl>
         </div>
@@ -36,17 +47,7 @@
                 </dd>
             </dl>
         </div>
-        <div class="col-md-4">
-            <dl>
-                <dt>
-                    @Html.DisplayNameFor(model => model.contact)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.contact)
-                </dd>
-            </dl>
-        </div>
+        
     </div>
     <div class="row">
         <div class="col-md-4">
@@ -134,12 +135,12 @@
         <div class="col-md-4">
             <dl>
                 <dt>
-                    @Html.DisplayNameFor(model => model.password)
+                    @Html.DisplayNameFor(model => model.contact)
                 </dt>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.password)
-                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.contact)
+                </dd>
             </dl>
         </div>
         </div>
@@ -151,7 +152,7 @@
             @Html.AntiForgeryToken()
 
             <div class="form-actions no-color">
-                <input type="submit" value="Delete" class="btn btn-outline-light" /> |
+                <input type="submit" value="Delete" class="btn btn-outline-light" style="background: linear-gradient(rgba(42,157,216,0.5),rgba(187,18,55,0.5)) !important;"  /> |
                 @Html.ActionLink("Back to List", "Index")
             </div>
         }

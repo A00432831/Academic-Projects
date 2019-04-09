@@ -22,14 +22,14 @@ namespace BusBooking
         }
         [Display(Name = "Bus ID")]
         public int bus_id { get; set; }
-
+        // Validations for Bus name 
         [Display(Name = "Bus Name")]
-        [StringLength(50, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(50, ErrorMessage = "The Bus name must be at least 4 characters long.", MinimumLength = 4)]
         public string bus_name { get; set; }
-
+      
         [Display(Name = "Bus Type")]
         public int bus_type_id { get; set; }
-
+        //Validations for Total seats
         [Display(Name = "Total Seats")]
         [RegularExpression("^[0-9]{1,10}$", ErrorMessage = "Please Enter numerics")]
         public int total_seats { get; set; }

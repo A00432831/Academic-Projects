@@ -11,45 +11,39 @@ namespace BusBooking
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class transaction
     {
         public int t_id { get; set; }
 
+        //Validations for name on  card
         [Required(ErrorMessage = "Please enter the name on card")]
         [Display(Name ="Name On Card")]
+        [RegularExpression(@"^[a-zA-Z]{5,20}$", ErrorMessage ="Invalid characters")]
+        [StringLength(20, MinimumLength = 5, ErrorMessage = "Only 5-20 characters allowed")]
         public string nameOnCard { get; set; }
 
+        //Card Number validation
         [Required(ErrorMessage = "Please enter the Card Number")]
         [StringLength(16, MinimumLength = 15, ErrorMessage = "Invalid Card Number")]
         [RegularExpression(@"^[0-9]*$", ErrorMessage = "Only Digits")]
         [Display(Name = "Card Number")]
         public string cardNumber { get; set; }
-
-        [Display(Name = "Unit Price")]
         public decimal unit_price { get; set; }
-
-        [Display(Name = "Quantity")]
         public int quantity { get; set; }
-
-        [Display(Name = "Total Price")]
         public decimal total_price { get; set; }
 
+        //Validations for expiry date between 01/2016---12/2031
         [Display(Name = "Exp Date")]
         [Required(ErrorMessage = "Please enter the expiry date")]
-        [RegularExpression(@"(0[1-9]|10|11|12)/202[0-9]{1}$", ErrorMessage = "Invalid Expiry date")]
+        [RegularExpression(@"(0[1-9]|10|11|12)/(201[6-9]|202[0-9]|2030|2031)$", ErrorMessage = "Invalid Expiry date")]
         public string exp_Date { get; set; }
-
-        [Display(Name = "Created On")]
-        public System.DateTime createdOn { get; set; } = DateTime.Now;
-
-        [Display(Name = "Created By")]
+        public System.DateTime createdOn { get; set; }
         public string createdBy { get; set; }
         public int c_id { get; set; }
         public int s_id { get; set; }
         public int user_id { get; set; }
-
+    
         public virtual creditcard_type creditcard_type { get; set; }
         public virtual schedule schedule { get; set; }
         public virtual user user { get; set; }

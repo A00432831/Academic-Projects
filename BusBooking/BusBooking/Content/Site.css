@@ -167,14 +167,14 @@ table {
 
     table tr:nth-child(even) {
         background-color: rgba(42,157,216,0.5);
-        color: white;
+        color: white !important;
     }
 
-    table tr:hover {
-        background-color: rgba(42,157,216,0.5);
-        color: white;
+    table tr:nth-child(odd) {
+        background-color: transparent;
+        color: white !important;
     }
-
+    
     table th {
         padding-top: 12px;
         padding-bottom: 12px;

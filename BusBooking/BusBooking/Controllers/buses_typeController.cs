@@ -22,6 +22,11 @@ namespace BusBooking.Controllers
         }
 
         // GET: buses_type/Details/5
+        /// <summary>
+        /// Fectching Details of Bus types based on Unique ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -29,6 +34,7 @@ namespace BusBooking.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             buses_type buses_type = await db.buses_type.FindAsync(id);
+            //Validating for Null buses_type
             if (buses_type == null)
             {
                 return HttpNotFound();
@@ -37,6 +43,10 @@ namespace BusBooking.Controllers
         }
 
         // GET: buses_type/Create
+        /// <summary>
+        /// Creation of New Buses_types
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Create()
         {
             return View();
@@ -60,6 +70,11 @@ namespace BusBooking.Controllers
         }
 
         // GET: buses_type/Edit/5
+        /// <summary>
+        /// Editing Details of Bus types based on Unique ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -91,6 +106,11 @@ namespace BusBooking.Controllers
         }
 
         // GET: buses_type/Delete/5
+        /// <summary>
+        /// Deleting Details of Bus types based on Unique ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
