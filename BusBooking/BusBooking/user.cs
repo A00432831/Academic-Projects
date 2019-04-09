@@ -22,57 +22,68 @@ namespace BusBooking
         }
         public int user_id { get; set; }
 
+        //Required the name with max length of 50
         [Required(ErrorMessage = "Please Enter Name ")]
         [Display(Name = "Name")]
         [StringLength(50, ErrorMessage = "name should be Max length of 50")]
         public string name { get; set; }
 
+        //Required & Check th validation of the email address and display error message if not valid
         [Required(ErrorMessage = "Please Enter Email Address")]
         [Display(Name = "Email")]
         [RegularExpression("^([\\w\\.\\-]+)@([\\w\\-]+)((\\.(\\w){2,3})+)$", ErrorMessage = "Please Enter Correct Email Address")]
         public string email { get; set; }
 
+        //Required and checks for the validations for the phone number with error message if not valid
         [Required(ErrorMessage = "Please enter Phone Number")]
         [Display(Name = "Phone Number")]
         [StringLength(11, ErrorMessage = "Phone Number should be maximum of 10", MinimumLength = 10)]
         [RegularExpression("^\\(?([0-9]{3})\\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Please Enter Correct Phone Number")]
-
         public string contact { get; set; }
+
+        //required field with error message
         [Required(ErrorMessage = "Please Enter Apartment Number")]
         [Display(Name = "Apt#")]
         public string apt_number { get; set; }
 
+        //required field with error message
         [Required(ErrorMessage = "Please Enter Street Number")]
         [Display(Name = "Street#")]
         public string street_number { get; set; }
 
+        //required field with error message
         [Required(ErrorMessage = "Please Enter City")]
         [Display(Name = "City")]
         public string city { get; set; }
 
+        //required field with error message
         [Required(ErrorMessage = "Please Enter Province/State")]
         [Display(Name = "Province/State")]
         public string state { get; set; }
 
+        //required field with error message
         [Required(ErrorMessage = "Please Enter Country")]
         [Display(Name = "Country")]
         public string country { get; set; }
 
+        //Required and checks for the validation of the postal code with error message if not valid
         [Required(ErrorMessage = "Please Enter Postal Code")]
         [Display(Name = "Postal Code")]
         [RegularExpression("[ABCEGHJKLMNPRSTVXY][0-9][ABCEGHJKLMNPRSTVWXYZ][0-9][ABCEGHJKLMNPRSTVWXYZ][0-9]", ErrorMessage = "Please Enter Valid Postal Code")]
         public string postal_Code { get; set; }
 
+        //required field with error message
         [Required(ErrorMessage = "Please Enter Password")]
         [Display(Name = "Password")]
         [DataType(DataType.Password)]
         public string password { get; set; }
 
+        //required field with error message
         [Required(ErrorMessage = "Please Choose a Role")]
         [Display(Name = "Role")]
         public string role { get; set; }
 
-
+        //required field and checks whether it matches the password with error message if not valid
         [NotMapped]
         [Required(ErrorMessage = "Please Enter Confirm Password")]
         [Display(Name = "Confirm Password")]

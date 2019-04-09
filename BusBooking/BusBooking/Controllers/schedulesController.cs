@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -19,14 +20,25 @@ namespace BusBooking.Controllers
         private BUSTICKETEntities db = new BUSTICKETEntities();
 
         // GET: schedules
+        /// <summary>
+        /// Returns the view page of schedules
+        /// </summary>
+        /// <returns></returns>
         public async Task<ActionResult> Index()
         {
             var schedules = db.schedules.ToList();
             return View(schedules);
         }
+
+
         // get : home page
+        /// <summary>
+        /// Return the view page to search for the buses 
+        /// </summary>
+        /// <returns></returns>
         public async Task<ActionResult> SearchBuses()
         {
+            //Gives the distinct values of source, destination and dates from the database table schedule
             var a = db.schedules.Select(arg => new { source = arg.source }).ToList().Distinct();
             var b = db.schedules.Select(arg => new { destination = arg.destination }).ToList().Distinct();
             var c = db.schedules.Select(arg => new { date = arg.date }).ToList().Distinct();
@@ -46,13 +58,22 @@ namespace BusBooking.Controllers
             return View();
         }
         // post: Home Page
+        /// <summary>
+        /// Search the buses with following parameters : Source, destination, date
+        /// </summary>
+        /// <param name="sources"></param>
+        /// <param name="destinations"></param>
+        /// <param name="dates"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult SearchBuses(string sources, string destinations, String dates)
         {
             db.Configuration.ProxyCreationEnabled = false;
+            //retrieve the list of the buses from schedule table with the matching condition of source to destination with date  
             var schedules = db.schedules.Where(s => s.source == sources && s.destination == destinations && s.date == dates).ToList();
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             //string json = serializer.Serialize(schedules);
+            //Returns the bus information from schedule table with source, destination,its cost,descrption,cate, time, and the schedule_id
             return Json(schedules.Select( s => new
             {
                 source = s.source,
@@ -68,6 +89,11 @@ namespace BusBooking.Controllers
         }
 
         // GET: schedules/Details/5
+        /// <summary>
+        /// Returns the view of all schedule
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -83,6 +109,10 @@ namespace BusBooking.Controllers
         }
 
         // GET: schedules/Create
+        /// <summary>
+        /// returns a view with bus_id and bus_name
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Create()
         {
             ViewBag.bus_id = new SelectList(db.buses, "bus_id", "bus_name");
@@ -92,6 +122,11 @@ namespace BusBooking.Controllers
         // POST: schedules/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Add a schedule to the database and returns a view of schedule
+        /// </summary>
+        /// <param name="schedule"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "s_id,source,destination,date,cost,bus_id,description")] schedule schedule)
@@ -108,6 +143,11 @@ namespace BusBooking.Controllers
         }
 
         // GET: schedules/Edit/5
+        /// <summary>
+        /// Can edit the schedule
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -126,6 +166,7 @@ namespace BusBooking.Controllers
         // POST: schedules/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "s_id,source,destination,date,cost,bus_id,description")] schedule schedule)
@@ -156,6 +197,11 @@ namespace BusBooking.Controllers
         }
 
         // POST: schedules/Delete/5
+        /// <summary>
+        /// Can delete the schedule 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
