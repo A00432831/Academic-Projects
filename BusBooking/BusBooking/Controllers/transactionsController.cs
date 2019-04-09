@@ -111,8 +111,8 @@ namespace BusBooking.Controllers
             if (ModelState.IsValid)
             {
                 db.transactions.Add(transaction);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                int transactionId = await db.SaveChangesAsync();
+                return RedirectToAction("Details",new { id = transactionId });
             }
 
             return View(transaction);
