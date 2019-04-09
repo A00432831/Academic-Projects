@@ -5,108 +5,155 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2> </h2>
 
 <div>
-    <h4>user</h4>
+    <h4>User Details</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.name)
-        </dt>
+    <div class="row">
+        <div class="col-md-4">
+            <dl>
+                <dt>
+                    @Html.DisplayNameFor(model => model.name)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.name)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.name)
+                </dd>
+            </dl>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.email)
-        </dt>
+        <div class="col-md-4">
+            <dl>
 
-        <dd>
-            @Html.DisplayFor(model => model.email)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.email)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.contact)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.email)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-4">
+            <dl>
+                <dt>
+                    @Html.DisplayNameFor(model => model.contact)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.contact)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.contact)
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <dl>
+                <dt>
+                    @Html.DisplayNameFor(model => model.apt_number)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.apt_number)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.apt_number)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-4">
+            <dl>
+                <dt>
+                    @Html.DisplayNameFor(model => model.street_number)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.apt_number)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.street_number)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-4">
+            <dl>
+                <dt>
+                    @Html.DisplayNameFor(model => model.city)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.street_number)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.city)
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <dl>
+                <dt>
+                    @Html.DisplayNameFor(model => model.state)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.street_number)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.state)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-4">
+            <dl>
+                <dt>
+                    @Html.DisplayNameFor(model => model.country)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.city)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.country)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-4">
+            <dl>
+                <dt>
+                    @Html.DisplayNameFor(model => model.postal_Code)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.city)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.postal_Code)
+                </dd>
+            </dl>
+        </div>
+        </div>
+    <div class="row">
+        <div class="col-md-4">
+            <dl>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.state)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.role)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.state)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.role)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-4">
+            <dl>
+                <dt>
+                    @Html.DisplayNameFor(model => model.password)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.country)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.password)
+                </dt>
+            </dl>
+        </div>
+        <div class="col-md-4">
+            <dl>
 
-        <dd>
-            @Html.DisplayFor(model => model.country)
-        </dd>
+                <dd>
+                    @*@Html.DisplayFor(model => model.password,new { TextBoxMode = "Password"}*@
+                    @Html.Raw("\u2022\u2022\u2022\u2022\u2022")
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.postal_Code)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.postal_Code)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.role)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.role)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.password)
-        </dt>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.password)
-        </dt>
-
-        <dd>
-            @*@Html.DisplayFor(model => model.password,new { TextBoxMode = "Password"}*@
-            @Html.Raw("\u2022\u2022\u2022\u2022\u2022")
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.user_id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+            </dl>
+        </div>
+        </div>
+    </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.user_id }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
