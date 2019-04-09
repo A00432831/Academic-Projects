@@ -167,6 +167,7 @@
     <Compile Include="Controllers\busesController.cs" />
     <Compile Include="Controllers\buses_typeController.cs" />
     <Compile Include="Controllers\creditcard_typeController.cs" />
+    <Compile Include="Controllers\ErrorHandlerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\schedulesController.cs" />
@@ -322,6 +323,8 @@
     <Content Include="Views\users\Index.cshtml" />
     <Content Include="Views\schedules\SearchBuses.cshtml" />
     <Content Include="Views\transactions\DetailsByUserId.cshtml" />
+    <Content Include="Views\ErrorHandler\Index.cshtml" />
+    <Content Include="Views\ErrorHandler\NotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
