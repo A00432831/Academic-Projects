@@ -9,7 +9,6 @@
 
 namespace BusBooking
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
@@ -83,6 +82,9 @@ namespace BusBooking
 
         [NotMapped]
         public string loginErrorMessage { get; set; }
+
+        [Display(Name = "Address")]
+        public string Address { get { return string.Join(",", apt_number, street_number, city, state, country, postal_Code); } }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<transaction> transactions { get; set; }
