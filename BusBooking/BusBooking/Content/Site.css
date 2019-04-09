@@ -10,9 +10,9 @@
 }
 
 
-table {
+/*table {
     color: white !important;
-}
+}*/
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -151,3 +151,36 @@ input::placeholder {
 a{
     color:#ffffff;
 }
+
+
+table {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+    table td, th {
+        border: 1px solid #ddd;
+        
+        padding: 8px;
+    }
+
+    table tr:nth-child(even) {
+        background-color: rgba(42,157,216,0.5);
+        color: white;
+    }
+
+    table tr:hover {
+        background-color: rgba(42,157,216,0.5);
+        color: white;
+    }
+
+    table th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: rgba(187,18,55,0.5);
+        border: dashed;
+        border-color: white;
+        color: white;
+    }
