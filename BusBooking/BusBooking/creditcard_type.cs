@@ -32,6 +32,7 @@ namespace BusBooking
         [RegularExpression(@"^\d{2}$", ErrorMessage ="Give only two numbers")]
         public string starts_with { get; set; }
 
+        [Display(Name = "Length")]
         [RegularExpression(@"^\d{2}$", ErrorMessage = "Give only two numbers")]
         public decimal length { get; set; }
     
