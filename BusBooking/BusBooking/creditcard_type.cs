@@ -25,7 +25,7 @@ namespace BusBooking
 
         //Validation for credit card name and error message if not valid
         [Display(Name = "Credit Card Name")]
-        [StringLength(50, ErrorMessage = "The must be at least 6 characters long.", MinimumLength = 6)]
+        [StringLength(50, ErrorMessage = "The must be at least 6 characters long.", MinimumLength =6)]
         [Required(ErrorMessage = "required")]
         public string name { get; set; }
 
