@@ -51,11 +51,13 @@ namespace BusBooking
         // Inputting Apartment Number
         [Required(ErrorMessage = "Please Enter Apartment Number")]
         [Display(Name = "Apt#")]
+        [RegularExpression("^[0-9]$", ErrorMessage = "Please Enter Correct Apartment Number")]
         public string apt_number { get; set; }
 
         // Inputting Street Number
         [Required(ErrorMessage = "Please Enter Street Number")]
         [Display(Name = "Street#")]
+        [RegularExpression("^[0-9]$", ErrorMessage = "Please Enter Correct Street Number")]
         public string street_number { get; set; }
 
         // Inputting City
