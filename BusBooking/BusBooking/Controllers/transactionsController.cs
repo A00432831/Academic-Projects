@@ -131,7 +131,7 @@ namespace BusBooking.Controllers
             {
                 db.transactions.Add(transaction);
                 int transactionId = await db.SaveChangesAsync();
-                return RedirectToAction("Details",new { id = transactionId });
+                return RedirectToAction("Details",new { id = transaction.t_id });
             }
 
             return View(transaction);
