@@ -41,16 +41,12 @@ namespace BusBooking.Controllers
             var a = db.schedules.Select(arg => new { source = arg.source }).ToList().Distinct();
             var b = db.schedules.Select(arg => new { destination = arg.destination }).ToList().Distinct();
             var c = db.schedules.Select(arg => new { date = arg.date }).ToList().Distinct();
-            var d = new List<string>();
-            foreach (var item in c)
-            {
-                d.Add(item.date);
-            }
-            d = d.Distinct().ToList();
+            var d = db.schedules.Select(arg => new { description = arg.description }).ToList().Distinct();
+          
             ViewData["source"] = new SelectList(a, "source", "source");
             ViewData["destination"] = new SelectList(b, "destination", "destination");
-            //ViewData["dateTime"] = new SelectList(c, "date", "date");
             ViewData["date"] = new SelectList(c, "date", "date");
+            ViewData["description"] = new SelectList(d, "description", "description");
 
 
             return View();
@@ -64,12 +60,12 @@ namespace BusBooking.Controllers
         /// <param name="dates"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult SearchBuses(string sources, string destinations, DateTime dates)
+        public ActionResult SearchBuses(string sources, string destinations, DateTime dates,string description)
         {
             db.Configuration.ProxyCreationEnabled = false;
             string date = dates.Date.ToString("yyyy-MM-dd");
             //retrieve the list of the buses from schedule table with the matching condition of source to destination with date
-            var schedules = db.schedules.Where(s => s.source == sources && s.destination == destinations && s.date == date).ToList();
+            var schedules = db.schedules.Where(s => s.source == sources && s.destination == destinations && s.date == date && s.description==description).ToList();
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             //string json = serializer.Serialize(schedules);
             //Returns the bus information from schedule table with source, destination,its cost,descrption,cate, time, and the schedule_id

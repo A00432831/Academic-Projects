@@ -140,8 +140,8 @@
         }
 
         #showBusesTable tr:nth-child(even) {
-            background-color: #f2f2f2;
-            color:black;
+            background-color: rgba(42,157,216,0.5);
+            color: white !important;
         }
 
         #showBusesTable tr:hover {
@@ -191,11 +191,8 @@
             </div>
 
             <div class="input-div">
-                <label>Class</label>
-                <select class="bus-select form-control">
-                    <option value="Economy">Economy</option>
-                    <option value="Business">Business</option>
-                </select>
+                <label>Class</label> 
+                @Html.DropDownListFor(model => model.destination, ViewData["description"] as SelectList, htmlAttributes: new { @id = "descriptionSelect", @class = "form-control bus-select", @placeholder = "Select the Description", @type = "text" })
             </div>
             <div class="input-div">
                 <button type="button" id="show_buses" class="btn btn-primary bus"> Show Buses</button>
@@ -308,7 +305,8 @@
         var source = $('#sourceSelect option:selected').val();
         var destination = $('#destinationSelect option:selected').val();
         var date = $('#dateSelect').val();
-        var dataJson = JSON.stringify({ "sources": source, "destinations": destination, "dates": date });
+        var description = $('#descriptionSelect option:selected').val();
+        var dataJson = JSON.stringify({ "sources": source, "destinations": destination, "dates": date, "description": description });
         var $elseNew = $('#showTablePlaceholder');
         $.ajax({
             type: 'POST',
