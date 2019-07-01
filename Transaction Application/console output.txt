@@ -1,0 +1,10 @@
+The updated value is :
+ID: 1
+NameOnCard: Pratik
+CardNumber: 4123456789012345
+Unit Price: 22
+Quantity: 3
+Total Price: 66
+Exp Date: 3/3
+Created On: 2016-11-20 00:00:00
+Credit Card Type: null
