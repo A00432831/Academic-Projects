@@ -1,0 +1,15 @@
+C:\Users\gadhi\source\repos\Assignment3\Assignment3\bin\Debug\Assignment3.exe.config
+C:\Users\gadhi\source\repos\Assignment3\Assignment3\bin\Debug\Assignment3.exe
+C:\Users\gadhi\source\repos\Assignment3\Assignment3\bin\Debug\Assignment3.pdb
+C:\Users\gadhi\source\repos\Assignment3\Assignment3\bin\Debug\EntityFramework.dll
+C:\Users\gadhi\source\repos\Assignment3\Assignment3\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\gadhi\source\repos\Assignment3\Assignment3\bin\Debug\EntityFramework.xml
+C:\Users\gadhi\source\repos\Assignment3\Assignment3\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\gadhi\source\repos\Assignment3\Assignment3\obj\Debug\Assignment3.csprojAssemblyReference.cache
+C:\Users\gadhi\source\repos\Assignment3\Assignment3\obj\Debug\Assignment3.Form1.resources
+C:\Users\gadhi\source\repos\Assignment3\Assignment3\obj\Debug\Assignment3.Properties.Resources.resources
+C:\Users\gadhi\source\repos\Assignment3\Assignment3\obj\Debug\Assignment3.csproj.GenerateResource.cache
+C:\Users\gadhi\source\repos\Assignment3\Assignment3\obj\Debug\Assignment3.csproj.CoreCompileInputs.cache
+C:\Users\gadhi\source\repos\Assignment3\Assignment3\obj\Debug\Assignment3.csproj.CopyComplete
+C:\Users\gadhi\source\repos\Assignment3\Assignment3\obj\Debug\Assignment3.exe
+C:\Users\gadhi\source\repos\Assignment3\Assignment3\obj\Debug\Assignment3.pdb
